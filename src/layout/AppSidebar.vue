@@ -27,8 +27,6 @@
             <v-list-item
                 v-if="!link.subLinks"
                 :to="link.url"
-                :active-class="color"
-                avatar
                 class="v-list-item"
             >
                 <v-list-item-icon>

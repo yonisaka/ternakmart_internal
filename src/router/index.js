@@ -39,8 +39,7 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  let data = store.getters['currentUser'];
-  let role_id = data.role_id;
+  let role_id = store.getters.currentUser.role_id;
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
