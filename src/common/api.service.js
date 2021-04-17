@@ -49,31 +49,32 @@ const ApiService = {
 
 export default ApiService;
 
+
 // export const TagsService = {
 //   get() {
 //     return ApiService.get("tags");
 //   }
 // };
 
-// export const ArticlesService = {
-//   query(type, params) {
-//     return ApiService.query("articles" + (type === "feed" ? "/feed" : ""), {
-//       params: params
-//     });
-//   },
-//   get(slug) {
-//     return ApiService.get("articles", slug);
-//   },
-//   create(params) {
-//     return ApiService.post("articles", { article: params });
-//   },
-//   update(slug, params) {
-//     return ApiService.update("articles", slug, { article: params });
-//   },
-//   destroy(slug) {
-//     return ApiService.delete(`articles/${slug}`);
-//   }
-// };
+export const TernakService = {
+  query(type, params) {
+    return ApiService.query("ternak" + (type === "feed" ? "/feed" : ""), {
+      params: params
+    });
+  },
+  get(slug) {
+    return ApiService.get("ternak", slug);
+  },
+  create(params) {
+    return ApiService.post("ternak", { ternak: params });
+  },
+  update(slug, params) {
+    return ApiService.update("ternak", slug, { ternak: params });
+  },
+  destroy(slug) {
+    return ApiService.delete(`ternak/${slug}`);
+  }
+};
 
 // export const CommentsService = {
 //   get(slug) {

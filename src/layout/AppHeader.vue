@@ -4,13 +4,13 @@
 
         <v-spacer></v-spacer>
 
-        <v-btn icon>
+        <!-- <v-btn icon>
         <v-icon>mdi-heart</v-icon>
         </v-btn>
 
         <v-btn icon>
         <v-icon>mdi-magnify</v-icon>
-        </v-btn>
+        </v-btn> -->
 
         <v-menu
         transition="slide-y-transition"
@@ -26,14 +26,19 @@
             </v-btn>
         </template>
 
-        <v-list>
-            <v-list-item
-            v-for="n in 3"
-            :key="n"
-            @click="() => {}"
+        <v-list dense>
+            <v-list-item-group
+                color="primary"
             >
-            <v-list-item-title>Option {{ n }}</v-list-item-title>
-            </v-list-item>
+                <v-list-item @click="logout">
+                    <v-list-item-icon>
+                        <v-icon>mdi-exit-to-app</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>Logout</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+            </v-list-item-group>
         </v-list>
         </v-menu>
     </v-app-bar>
@@ -49,7 +54,7 @@ export default {
     methods: {
         logout() {
             this.$store.dispatch(LOGOUT).then(() => {
-                this.$router.push({ name: "home" });
+                this.$router.push({ name: "login" });
             });
         }
     }

@@ -7,6 +7,8 @@ import vuetify from './plugins/vuetify';
 import { CHECK_AUTH } from "./store/actions.type";
 import ApiService from "./common/api.service";
 
+Vue.use(require('vue-moment'));
+
 Vue.config.productionTip = false
 
 ApiService.init();

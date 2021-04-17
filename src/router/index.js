@@ -34,7 +34,27 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: '/modal',
+      name: 'modal',
+      components: {
+        sidebar: AppSidebar,
+        header: AppHeader,
+        default: () => import("@/views/Index"),
+        footer: AppFooter,
+      },
+      children: [
+        {
+          path: 'pengajuan',
+          component: () => import("@/views/modal/Pengajuan")
+        }
+      ],
+      meta: {
+        requiresAuth: true
+      },
     }
+
   ]
 });
 
@@ -43,7 +63,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
-    if (!store.getters.isAuthenticated) {
+    if (!store.getters.isAuthenticated || store.getters.currentUser.id == null) {
       next({ name: 'login' })
     } else {
       store
