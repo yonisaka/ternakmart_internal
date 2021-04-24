@@ -57,12 +57,13 @@ const actions = {
         });
     });
   },
-  [CHECK_AUTH](context) {
+  [CHECK_AUTH](context,next) {
     if (JwtService.getToken()) {
       ApiService.setHeader();
       ApiService.get("users")
-        .then(({ data }) => {
-          context.commit(SET_AUTH, data.user);
+        .then(() => {
+          next()
+          // context.commit(SET_AUTH, data.user);
         })
         .catch(({ response }) => {
           context.commit(SET_ERROR, response);

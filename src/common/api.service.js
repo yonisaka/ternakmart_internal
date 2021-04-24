@@ -49,12 +49,23 @@ const ApiService = {
 
 export default ApiService;
 
+export const UsersService = {
+  get() {
+    return ApiService.get("users");
+  }
+};
 
-// export const TagsService = {
-//   get() {
-//     return ApiService.get("tags");
-//   }
-// };
+export const JenisService = {
+  get() {
+    return ApiService.get("jenis");
+  }
+}
+;
+export const GolonganService = {
+  get() {
+    return ApiService.get("golongan");
+  }
+};
 
 export const TernakService = {
   query(type, params) {
@@ -66,7 +77,7 @@ export const TernakService = {
     return ApiService.get("ternak", slug);
   },
   create(params) {
-    return ApiService.post("ternak", { ternak: params });
+    return ApiService.post("ternak", params);
   },
   update(slug, params) {
     return ApiService.update("ternak", slug, { ternak: params });

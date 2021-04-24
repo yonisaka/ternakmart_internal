@@ -1,6 +1,6 @@
 <template>
     <v-app-bar app color="#139CA4" dark>
-        <v-toolbar-title>Page title</v-toolbar-title>
+        <!-- <v-toolbar-title>Page title</v-toolbar-title> -->
 
         <v-spacer></v-spacer>
 
@@ -17,13 +17,12 @@
         bottom
         >
         <template v-slot:activator="{ on, attrs }">
-            <v-btn
-            icon
+            <span class="subtitle font-weight-bold"
             v-bind="attrs"
             v-on="on"
-            >
-            <v-icon>mdi-dots-vertical</v-icon>
-            </v-btn>
+            >{{ currentUser.name}} 
+            <v-icon>mdi-menu-down</v-icon>
+            </span>
         </template>
 
         <v-list dense>

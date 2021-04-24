@@ -4,6 +4,9 @@ import createPersistedState from 'vuex-persistedstate'
 
 import auth from "./auth.module";
 import ternak from "./ternak.module";
+import users from "./users.module";
+import jenis from "./jenis.module";
+import golongan from "./golongan.module";
 
 Vue.use(Vuex);
 
@@ -14,5 +17,8 @@ export default new Vuex.Store({
   modules: {
     auth,
     ternak,
+    jenis,
+    golongan,
+    users,
   }
 });

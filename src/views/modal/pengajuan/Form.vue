@@ -1,0 +1,352 @@
+<template>
+    <v-container>
+        <v-breadcrumbs
+            :items="breadcrumbs"
+            divider="\"
+        ></v-breadcrumbs>
+        <v-card
+        elevation="4"
+        >
+            <v-card-text>
+                <v-toolbar flat>
+                    <v-toolbar-title>
+                        <div
+                        class="title font-weight-bold my-2 ml-2"
+                        >
+                        Pengajuan Ternak
+                        </div>  
+                    </v-toolbar-title>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                    to="/modal/pengajuan"
+                    dense
+                    color="secondary"
+                    >
+                    Kembali
+                    </v-btn>
+                    
+                </v-toolbar>
+                <v-divider></v-divider>
+                <div class="subtitle font-weight-bold mt-5 ml-5">
+                    Informasi Ternak
+                </div>
+                <v-form
+                ref="form"
+                enctype="multipart/form-data"
+                @submit.prevent="onSubmit()"
+                >
+                    <v-container fluid>
+                        <v-row>
+                            
+                        </v-row>
+                        <v-row>
+                            <v-col
+                                cols="4"
+                            >
+                                <v-text-field
+                                v-model="form.ternak_nama"
+                                color="teal darken-2"
+                                label="Nama Ternak"
+                                outlined
+                                dense
+                                required
+                                ></v-text-field>
+                            </v-col>
+                            <v-col cols="2">
+                                <v-select
+                                v-model="form.jenis_kelamin"
+                                item-text="text"
+                                item-value="value"
+                                :items="jenis_kelamin"
+                                color="teal"
+                                label="Kelamin"
+                                outlined
+                                dense
+                                required
+                                @change="filterJenis"
+                                ></v-select>
+                            </v-col>
+                            <v-col cols="3">
+                                <v-select
+                                v-model="form.id_golongan"
+                                item-text="golongan_nama"
+                                item-value="id"
+                                :items="golongan"
+                                color="teal"
+                                label="Jenis"
+                                outlined
+                                dense
+                                required
+                                @change="filterJenis"
+                                ></v-select>
+                            </v-col>
+                            <v-col cols="3">
+                                <v-select
+                                v-model="form.id_jenis"
+                                item-text="jenis_nama"
+                                item-value="id"
+                                :items="jenis"
+                                color="teal"
+                                label="Breed"
+                                outlined
+                                dense
+                                required
+                                ></v-select>
+                            </v-col>
+                            <v-col cols="6">
+                                <v-file-input
+                                @change="onFilePicked"
+                                show-size
+                                counter
+                                multiple
+                                outlined
+                                dense
+                                label="Foto Ternak"
+                                ></v-file-input>
+                            </v-col>
+                            <v-col cols="2">
+                                <v-text-field
+                                v-model="form.ternak_berat"
+                                color="teal darken-2"
+                                label="Berat"
+                                outlined
+                                dense
+                                required
+                                ></v-text-field>
+                            </v-col>
+                            <v-col cols="2">
+                                <v-text-field
+                                v-model="form.ternak_umur"
+                                color="teal darken-2"
+                                label="Umur"
+                                outlined
+                                dense
+                                required
+                                ></v-text-field>
+                            </v-col>
+                            <v-col cols="2">
+                                <v-text-field
+                                v-model="form.lingkar_perut"
+                                color="teal darken-2"
+                                label="Lingkar Perut"
+                                outlined
+                                dense
+                                required
+                                ></v-text-field>
+                            </v-col>
+                            <v-col v-if="id_ternak" cols="6">
+                                <v-img
+                                :lazy-src="form.file_path"
+                                :src="form.file_path"
+                                aspect-ratio="1.8"
+                                @error="$event.target.src='img/default.png'"
+                                ></v-img>
+                            </v-col>
+                            <v-col v-if="id_ternak" cols="6">
+                                <v-textarea
+                                v-model="form.ternak_deskripsi"
+                                color="teal darken-2"
+                                rows="10"
+                                outlined
+                                dense
+                                row-height="30"
+                                >
+                                <template v-slot:label>
+                                    <div>
+                                    Deskripsi
+                                    </div>
+                                </template>
+                                </v-textarea>
+                            </v-col>
+                            <v-col v-else cols="12">
+                                <v-textarea
+                                v-model="form.ternak_deskripsi"
+                                color="teal darken-2"
+                                rows="10"
+                                outlined
+                                dense
+                                row-height="30"
+                                >
+                                <template v-slot:label>
+                                    <div>
+                                    Deskripsi
+                                    </div>
+                                </template>
+                                </v-textarea>
+                            </v-col>
+                            <v-col cols="6">
+                                <v-menu
+                                    v-model="menu"
+                                    :close-on-content-click="false"
+                                    :nudge-right="40"
+                                    transition="scale-transition"
+                                    offset-y
+                                    min-width="auto"
+                                >
+                                    <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                        v-model="form.tgl_penerimaan"
+                                        label="Tanggal Penerimaan"
+                                        prepend-icon="mdi-calendar"
+                                        readonly
+                                        outlined
+                                        dense
+                                        v-bind="attrs"
+                                        v-on="on"
+                                    ></v-text-field>
+                                    </template>
+                                    <v-date-picker
+                                    v-model="form.tgl_penerimaan"
+                                    @input="menu = false"
+                                    ></v-date-picker>
+                                </v-menu>
+                            </v-col>
+                            <v-col cols="6">
+                                <v-text-field
+                                v-model="form.harga_pengajuan"
+                                color="teal darken-2"
+                                label="Harga"
+                                outlined
+                                dense
+                                required
+                                ></v-text-field>
+                            </v-col>
+                        </v-row>
+                        <v-row class="text-right">
+                            <v-col>
+                                <v-btn
+                                type="submit"
+                                color="primary"
+                                >
+                                    Simpan
+                                </v-btn>
+                            </v-col>
+                        </v-row>
+                    </v-container>
+                </v-form>
+            </v-card-text>
+        </v-card>
+    </v-container>
+</template>
+<script>
+// import DatePicker from "@/components/Datepicker";
+import { mapGetters } from "vuex";
+// import { FETCH_JENIS, ADD_TERNAK } from "@/store/actions.type";
+import { FETCH_GOL } from "@/store/actions.type";
+import axios from "axios";
+
+export default {
+    components: {
+        // DatePicker
+    },
+    data() {
+        return {
+            id_ternak: '',
+            jenis_kelamin: [
+                { 
+                    text: 'Betina',
+                    value: 'B',
+                }, 
+                {
+                    text: 'Jantan',
+                    value: 'J',
+                }
+            ],
+            form: {},
+            jenis: [
+                {
+                    'jenis_nama' : 'Pilih golongan terlebih dahulu',
+                    'id' : ''
+                }
+            ],
+            breadcrumbs: [
+                {
+                    text: 'Modal',
+                    disabled: true,
+                },
+                {
+                    text: 'Pengajuan',
+                    disabled: true,
+                },
+                {
+                    text: 'Tambah Data',
+                    disabled: true,
+                },
+            ],
+            menu: false,
+        }
+    },
+    mounted() {
+        this.$store.dispatch(FETCH_GOL);
+        this.id_ternak = this.$route.params.id || ''
+
+        if (this.$route.params.id){
+            axios
+            .get("/ternak/"+ this.$route.params.id)
+            .then((res) => {
+                this.form = res.data.ternak
+                this.jenis = {
+                    'id': res.data.ternak.id_jenis,
+                    'jenis_nama': res.data.ternak.jenis_nama
+                }
+            })
+            // .catch((err) => console.log(err));
+        }
+    },
+    computed: {
+        ...mapGetters(["golongan"]),
+    },
+    methods: {
+        filterJenis() {
+            axios
+            .get("/jenis/"+ this.form.id_golongan + "/" + this.form.jenis_kelamin)
+            .then((res) => {
+                this.jenis = res.data.jenis;
+            })
+            // .catch((err) => console.log(err));
+        },
+        onFilePicked(files){
+            this.form.file = files[0];
+        },
+        onSubmit() {
+            let formData = new FormData();
+            formData.append("ternak_nama", this.form.ternak_nama);
+            formData.append("id_jenis", this.form.id_jenis);
+            formData.append("jenis_kelamin", this.form.jenis_kelamin);
+            formData.append("lingkar_perut", this.form.lingkar_perut);
+            formData.append("ternak_berat", this.form.ternak_berat);
+            formData.append("ternak_umur", this.form.ternak_umur);
+            formData.append("file", this.form.file);
+            formData.append("ternak_deskripsi", this.form.ternak_deskripsi);
+            formData.append("harga_pengajuan", this.form.harga_pengajuan);
+            formData.append("tgl_penerimaan", this.form.tgl_penerimaan);
+
+            if (this.$route.params.id){
+                axios
+                .post("/ternak/" + this.id_ternak + '?_method=PUT', formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                .then(() => {
+                    this.$router.push({ path: '/modal/pengajuan'})
+                })
+                .catch((err) => console.log(err));
+            } else {
+                axios
+                .post("/ternak", formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                .then(() => {
+                    this.$router.push({ path: '/modal/pengajuan'})
+                })
+                .catch((err) => console.log(err));
+            }
+        },
+    }
+}
+</script>

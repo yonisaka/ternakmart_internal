@@ -13,20 +13,13 @@
                         <div
                         class="title font-weight-bold my-2 ml-2"
                         >
-                        Pengajuan Ternak
+                        Persetujuan Ternak
                         </div>  
                     </v-toolbar-title>
-                    <v-spacer></v-spacer>
-                    <v-btn
-                    dense
-                    color="primary"
-                    >
-                    <v-icon>mdi-plus</v-icon>
-                    Tambah</v-btn>
                     
                 </v-toolbar>
                 <v-row>
-                    <v-col cols="4">
+                    <v-col sm="12" md="4">
                         <v-text-field
                             class="ml-2"
                             v-model="search"
@@ -40,16 +33,40 @@
                 <v-row>
                     <v-col>
                         <v-data-table
-                        :headers="headers"
-                        :items="ternak"
-                        :search="search"
-                        item-key="ternak.id"
+                            :headers="headers"
+                            :items="ternak"
+                            :search="search"
+                            :page.sync="page"
+                            item-key="ternak.id"
+                            :items-per-page="itemsPerPage"
+                            hide-default-footer
+                            class="elevation-1"
+                            @page-count="pageCount = $event"
                         >
-                        <template v-slot:[`item.ternak_harga`]="{ item }">
-                            {{ formatPrice(item.ternak_harga) }}
+                        <template v-slot:[`item.harga_pengajuan`]="{ item }">
+                            {{ formatPrice(item.harga_pengajuan) }}
                         </template>
                         <template v-slot:[`item.tgl_penerimaan`]="{ item }">
                             {{ item.tgl_penerimaan|moment('MMM Do YYYY') }}
+                        </template>
+                        <template v-slot:[`item.verifikasi_st`]="{ item }">
+                            <v-chip
+                            v-if="item.verifikasi_st === '1'"
+                            class="ma-2"
+                            color="green"
+                            text-color="white"
+                            >
+                            Verified
+                            </v-chip>
+                            <v-chip
+                            v-else
+                            class="ma-2"
+                            color="orange"
+                            text-color="white"
+                            >
+                            Waiting
+                            </v-chip>
+                            
                         </template>
                         <template v-slot:[`item.actions`]="{ item }">
                             <v-btn 
@@ -57,24 +74,22 @@
                             icon
                             color="primary" 
                             class="mr-2" 
-                            :to="'pengajuan/'+item.id"
+                            :to="'persetujuan/detail/'+item.id"
                             >
                                 <v-icon>
-                                mdi-pencil
-                                </v-icon>
-                            </v-btn>
-                            <v-btn
-                            small 
-                            icon
-                            color="red"
-                            @click="deleteTernak(item.id)"
-                            >
-                                <v-icon >
-                                mdi-delete
+                                mdi-magnify
                                 </v-icon>
                             </v-btn>
                         </template>
                         </v-data-table>
+                    </v-col>
+                </v-row>
+                <v-row>
+                    <v-col>
+                        <v-pagination
+                            v-model="page"
+                            :length="pageCount"
+                        ></v-pagination>
                     </v-col>
                 </v-row>
             </v-card-text>
@@ -84,12 +99,17 @@
 <script>
 import { mapGetters } from "vuex";
 import store from "@/store";
+// import axios from "axios";
 import { FETCH_TERNAK } from "@/store/actions.type";
 // import TableTernak from "@/components/TableTernak";
 
 export default{
     data() {
         return {
+            page: 1,
+            pageCount: 0,
+            itemsPerPage: 5,
+            id_ternak: '',
             search: '',
             breadcrumbs: [
                 {
@@ -97,19 +117,21 @@ export default{
                     disabled: true,
                 },
                 {
-                    text: 'Pengajuan',
+                    text: 'Persetujuan',
                     disabled: true,
                 },
             ],
              headers: [
-                { text: "ID", align: "start", sortable: false, value: "id" },
-                { text: "Nama", align: "start", sortable: false, value: "ternak_nama" },
-                { text: "Jenis", value: "jenis_nama", sortable: false },
+                { text: "ID", align: "start", sortable: true, value: "id" },
+                { text: "Hewan Ternak", align: "start", sortable: true, value: "ternak_nama" },
+                { text: "RFID", align: "start", sortable: true, value: "rfid" },
+                { text: "Breed", value: "jenis_nama", sortable: false },
                 { text: "Berat (kg)", value: "ternak_berat", sortable: false },
-                { text: "Tinggi (cm)", value: "ternak_tinggi", sortable: false },
+                { text: "Lingkar Perut (cm)", value: "lingkar_perut", sortable: false },
                 { text: "Umur (th)", value: "ternak_umur", sortable: false },
-                { text: "Harga", value: "ternak_harga", sortable: false},
-                { text: "Tanggal Penerimaan", value: "tgl_penerimaan", sortable: false},
+                { text: "Harga Pengajuan", value: "harga_pengajuan", sortable: false},
+                { text: "Tanggal Pengecekan", value: "tgl_pemeriksaan", sortable: false},
+                { text: "Status", align: "center", value: "verifikasi_st", sortable: false},
                 { text: "Actions", value: "actions", sortable: false },
             ],
 

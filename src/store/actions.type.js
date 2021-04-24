@@ -7,3 +7,9 @@ export const CHECK_AUTH = "checkAuth";
 export const CHECK_NAV = "checkNav";
 
 export const FETCH_TERNAK = "fetchTernak";
+export const ADD_TERNAK = "addTernak";
+
+export const FETCH_USERS = "fetchUsers";
+
+export const FETCH_JENIS = "fetchJenis";
+export const FETCH_GOL = "fetchGol";

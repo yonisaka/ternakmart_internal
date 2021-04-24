@@ -47,14 +47,47 @@ const router = new Router({
       children: [
         {
           path: 'pengajuan',
-          component: () => import("@/views/modal/Pengajuan")
-        }
+          component: () => import("@/views/modal/pengajuan/Index")
+        },
+        {
+          path: 'pengajuan/form',
+          component: () => import("@/views/modal/pengajuan/Form")
+        },
+        {
+          path: 'pengajuan/form/:id',
+          component: () => import("@/views/modal/pengajuan/Form")
+        },
+        {
+          path: 'persetujuan',
+          component: () => import("@/views/modal/persetujuan/Index")
+        },
+        {
+          path: 'persetujuan/detail/:id',
+          component: () => import("@/views/modal/persetujuan/Detail")
+        },
+        {
+          path: 'penjualan',
+          component: () => import("@/views/modal/penjualan/Index")
+        },
+        {
+          path: 'penjualan/detail/:id',
+          component: () => import("@/views/modal/penjualan/Detail")
+        },
       ],
       meta: {
         requiresAuth: true
       },
+    },
+    {
+      path: '/user',
+      name: 'user',
+      components: {
+        sidebar: AppSidebar,
+        header: AppHeader,
+        default: () => import("@/views/user/Index"),
+        footer: AppFooter,
+      }
     }
-
   ]
 });
 
