@@ -84,9 +84,89 @@ const router = new Router({
       components: {
         sidebar: AppSidebar,
         header: AppHeader,
-        default: () => import("@/views/user/Index"),
+        default: () => import("@/views/Index"),
         footer: AppFooter,
-      }
+      },
+      children: [
+        {
+          path: 'admin',
+          component: () => import("@/views/user/admin/Index")
+        },
+        {
+          path: 'admin/form',
+          component: () => import("@/views/user/admin/Form")
+        },
+        {
+          path: 'admin/form/:id',
+          component: () => import("@/views/user/admin/Form")
+        },
+        {
+          path: 'dokter',
+          component: () => import("@/views/user/dokter/Index")
+        },
+        {
+          path: 'dokter/form',
+          component: () => import("@/views/user/dokter/Form")
+        },
+        {
+          path: 'dokter/form/:id',
+          component: () => import("@/views/user/dokter/Form")
+        },
+        {
+          path: 'penjual',
+          component: () => import("@/views/user/penjual/Index")
+        },
+        {
+          path: 'penjual/form',
+          component: () => import("@/views/user/penjual/Form")
+        },
+        {
+          path: 'penjual/form/:id',
+          component: () => import("@/views/user/penjual/Form")
+        },
+        {
+          path: 'customer',
+          component: () => import("@/views/user/customer/Index")
+        },
+        {
+          path: 'customer/form',
+          component: () => import("@/views/user/customer/Form")
+        },
+        {
+          path: 'customer/form/:id',
+          component: () => import("@/views/user/customer/Form")
+        },
+      ],
+      meta: {
+        requiresAuth: true
+      },
+    },
+    {
+      path: '/setting',
+      name: 'setting',
+      components: {
+        sidebar: AppSidebar,
+        header: AppHeader,
+        default: () => import("@/views/Index"),
+        footer: AppFooter,
+      },
+      children: [
+        {
+          path: 'menu',
+          component: () => import("@/views/setting/menu/Index")
+        },
+        {
+          path: 'role',
+          component: () => import("@/views/setting/role/Index")
+        },
+        {
+          path: 'role/list/:id',
+          component: () => import("@/views/setting/role/List")
+        },
+      ],
+      meta: {
+        requiresAuth: true
+      },
     }
   ]
 });

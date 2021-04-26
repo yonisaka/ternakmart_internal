@@ -10,6 +10,12 @@ export const FETCH_TERNAK = "fetchTernak";
 export const ADD_TERNAK = "addTernak";
 
 export const FETCH_USERS = "fetchUsers";
+export const FETCH_DOKTER = "fetchDokter";
+export const FETCH_PENJUAL = "fetchPenjual";
+export const FETCH_CUSTOMER = "fetchCustomer";
+
+export const FETCH_MENU = "fetchMenu";
+export const FETCH_ROLE = "fetchRole";
 
 export const FETCH_JENIS = "fetchJenis";
 export const FETCH_GOL = "fetchGol";

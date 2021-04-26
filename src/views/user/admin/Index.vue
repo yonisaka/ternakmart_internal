@@ -18,7 +18,7 @@
                     </v-toolbar-title>
                     <v-spacer></v-spacer>
                     <v-btn
-                    @click="showForm()"
+                    :to="'admin/form'"
                     dense
                     color="primary"
                     >
@@ -41,10 +41,10 @@
                     <v-col>
                         <v-data-table
                             :headers="headers"
-                            :items="users"
+                            :items="admin"
                             :search="search"
                             :page.sync="page"
-                            item-key="users.id"
+                            item-key="admin.id"
                             :items-per-page="itemsPerPage"
                             hide-default-footer
                             class="elevation-1"
@@ -56,7 +56,7 @@
                             icon
                             color="primary" 
                             class="mr-2" 
-                            :to="'pengajuan/form/'+item.id"
+                            :to="'admin/form/'+item.id"
                             >
                                 <v-icon>
                                 mdi-pencil
@@ -76,41 +76,16 @@
                         </v-data-table>
                     </v-col>
                 </v-row>
+                <v-row>
+                    <v-col>
+                        <v-pagination
+                            v-model="page"
+                            :length="pageCount"
+                        ></v-pagination>
+                    </v-col>
+                </v-row>
             </v-card-text>
         </v-card>
-        <!-- <v-dialog
-            v-model="dialogForm"
-            width="500"
-            >
-            <v-card>
-                <v-card-title class="headline grey lighten-2">
-                {{ dialogText }}
-                </v-card-title>
-
-                <v-card-text class="mt-3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
-                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
-                culpa qui officia deserunt mollit anim id est laborum.
-                </v-card-text>
-
-                <v-divider></v-divider>
-
-                <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="dialog = false"
-                >
-                    I accept
-                </v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog> -->
         <v-dialog v-model="dialogDelete" max-width="400px">
             <v-card>
                 <v-card-title class="headline">
@@ -154,7 +129,7 @@ export default{
                 { text: "ID", align: "start", sortable: false, value: "id" },
                 { text: "Nama", align: "start", sortable: false, value: "name" },
                 { text: "Email", align: "center", sortable: false, value: "email" },
-                { text: "Role", align: "center", sortable: false, value: "role_nama" },
+                { text: "Status", align: "center", sortable: false, value: "user_st" },
                 { text: "Actions", align: "center", sortable: false, value: "actions" },
             ],
             dialogText: '',
@@ -176,6 +151,11 @@ export default{
     },
     computed: {
         ...mapGetters(["users"]),
+        admin() {
+            return this.users.filter(users => {
+                return users.role_id == '1'
+            })
+        }
     },
     methods: {
         showForm (id) {

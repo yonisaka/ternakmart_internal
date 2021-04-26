@@ -100,14 +100,6 @@
                             v-model="page"
                             :length="pageCount"
                         ></v-pagination>
-                        <!-- <v-text-field
-                            :value="itemsPerPage"
-                            label="Items per page"
-                            type="number"
-                            min="-1"
-                            max="15"
-                            @input="itemsPerPage = parseInt($event, 10)"
-                        ></v-text-field> -->
                     </v-col>
                 </v-row>
                 <v-dialog v-model="dialogDelete" max-width="400px">

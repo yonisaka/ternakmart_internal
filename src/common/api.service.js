@@ -16,6 +16,12 @@ const ApiService = {
     ] = `Bearer ${JwtService.getToken()}`;
   },
 
+  setFormData() {
+    Vue.axios.defaults.headers.common[
+      "Content-Type"
+    ] = 'multipart/form-data';
+  },
+
   query(resource, params) {
     return Vue.axios.get(resource, params).catch(error => {
       throw new Error(`[RWV] ApiService ${error}`);
@@ -55,12 +61,45 @@ export const UsersService = {
   }
 };
 
+export const DokterService = {
+  get() {
+    return ApiService.get("dokter");
+  }
+};
+
+export const PenjualService = {
+  get() {
+    return ApiService.get("penjual");
+  }
+};
+
+export const CustomerService = {
+  get() {
+    return ApiService.get("customer");
+  }
+};
+
 export const JenisService = {
   get() {
     return ApiService.get("jenis");
   }
 }
 ;
+
+export const MenuService = {
+  get() {
+    return ApiService.get("menu");
+  }
+}
+;
+
+export const RoleService = {
+  get() {
+    return ApiService.get("role");
+  }
+}
+;
+
 export const GolonganService = {
   get() {
     return ApiService.get("golongan");
@@ -86,33 +125,3 @@ export const TernakService = {
     return ApiService.delete(`ternak/${slug}`);
   }
 };
-
-// export const CommentsService = {
-//   get(slug) {
-//     if (typeof slug !== "string") {
-//       throw new Error(
-//         "[RWV] CommentsService.get() article slug required to fetch comments"
-//       );
-//     }
-//     return ApiService.get("articles", `${slug}/comments`);
-//   },
-
-//   post(slug, payload) {
-//     return ApiService.post(`articles/${slug}/comments`, {
-//       comment: { body: payload }
-//     });
-//   },
-
-//   destroy(slug, commentId) {
-//     return ApiService.delete(`articles/${slug}/comments/${commentId}`);
-//   }
-// };
-
-// export const FavoriteService = {
-//   add(slug) {
-//     return ApiService.post(`articles/${slug}/favorite`);
-//   },
-//   remove(slug) {
-//     return ApiService.delete(`articles/${slug}/favorite`);
-//   }
-// };
