@@ -25,7 +25,8 @@
                             v-model="search"
                             append-icon="mdi-magnify"
                             label="Search"
-                            single-line
+                            solo
+                            clearable
                             hide-details
                         ></v-text-field>
                     </v-col>
@@ -45,9 +46,6 @@
                         >
                         <template v-slot:[`item.harga_pengajuan`]="{ item }">
                             {{ formatPrice(item.harga_pengajuan) }}
-                        </template>
-                        <template v-slot:[`item.tgl_penerimaan`]="{ item }">
-                            {{ item.tgl_penerimaan|moment('MMM Do YYYY') }}
                         </template>
                         <template v-slot:[`item.verifikasi_st`]="{ item }">
                             <v-chip
@@ -130,7 +128,6 @@ export default{
                 { text: "Lingkar Perut (cm)", value: "lingkar_perut", sortable: false },
                 { text: "Umur (th)", value: "ternak_umur", sortable: false },
                 { text: "Harga Pengajuan", value: "harga_pengajuan", sortable: false},
-                { text: "Tanggal Pengecekan", value: "tgl_pemeriksaan", sortable: false},
                 { text: "Status", align: "center", value: "verifikasi_st", sortable: false},
                 { text: "Actions", value: "actions", sortable: false },
             ],

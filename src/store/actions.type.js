@@ -9,6 +9,8 @@ export const CHECK_NAV = "checkNav";
 export const FETCH_TERNAK = "fetchTernak";
 export const ADD_TERNAK = "addTernak";
 
+export const FETCH_TRANSAKSI = "fetchTransaksi";
+
 export const FETCH_USERS = "fetchUsers";
 export const FETCH_DOKTER = "fetchDokter";
 export const FETCH_PENJUAL = "fetchPenjual";

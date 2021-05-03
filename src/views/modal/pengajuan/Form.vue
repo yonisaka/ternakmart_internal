@@ -36,8 +36,10 @@
                 @submit.prevent="onSubmit()"
                 >
                     <v-container fluid>
-                        <v-row>
-                            
+                        <v-row v-if="errors" >
+                            <ul class="red--text my-3">
+                                <li v-for="(v, k) in errors" :key="k"> {{ v[0] | error }}</li>
+                            </ul>
                         </v-row>
                         <v-row>
                             <v-col
@@ -217,6 +219,7 @@
                                 <v-btn
                                 type="submit"
                                 color="primary"
+                                :disabled="isLoading"
                                 >
                                     Simpan
                                 </v-btn>
@@ -241,6 +244,7 @@ export default {
     },
     data() {
         return {
+            isLoading: false,
             id_ternak: '',
             jenis_kelamin: [
                 { 
@@ -274,6 +278,7 @@ export default {
                 },
             ],
             menu: false,
+            errors: {},
         }
     },
     mounted() {
@@ -309,6 +314,7 @@ export default {
             this.form.file = files[0];
         },
         onSubmit() {
+            this.isLoading = true
             let formData = new FormData();
             formData.append("ternak_nama", this.form.ternak_nama);
             formData.append("id_jenis", this.form.id_jenis);
@@ -331,8 +337,12 @@ export default {
                 })
                 .then(() => {
                     this.$router.push({ path: '/modal/pengajuan'})
+                    this.isLoading = false
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => {
+                    this.errors = err.response.data
+                    this.isLoading = false
+                });
             } else {
                 axios
                 .post("/ternak", formData,
@@ -343,8 +353,12 @@ export default {
                 })
                 .then(() => {
                     this.$router.push({ path: '/modal/pengajuan'})
+                    this.isLoading = false
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => {
+                    this.errors = err.response.data
+                    this.isLoading = false
+                });
             }
         },
     }

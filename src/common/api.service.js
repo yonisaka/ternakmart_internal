@@ -8,6 +8,10 @@ const ApiService = {
   init() {
     Vue.use(VueAxios, axios);
     Vue.axios.defaults.baseURL = API_URL;
+    Vue.axios.defaults.headers.common = {
+      "Accept" : "application/json",
+      "Content-Type" : "application/json"
+    };
   },
 
   setHeader() {
@@ -103,6 +107,12 @@ export const RoleService = {
 export const GolonganService = {
   get() {
     return ApiService.get("golongan");
+  }
+};
+
+export const TransaksiService = {
+  get() {
+    return ApiService.get("transaksi");
   }
 };
 

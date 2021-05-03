@@ -20,7 +20,7 @@
             <span class="subtitle font-weight-bold"
             v-bind="attrs"
             v-on="on"
-            >{{ currentUser.name}} 
+            >{{ currentUser.name }} 
             <v-icon>mdi-menu-down</v-icon>
             </span>
         </template>

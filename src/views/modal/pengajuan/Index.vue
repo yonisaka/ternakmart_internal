@@ -33,7 +33,8 @@
                             v-model="search"
                             append-icon="mdi-magnify"
                             label="Search"
-                            single-line
+                            solo
+                            clearable
                             hide-details
                         ></v-text-field>
                     </v-col>

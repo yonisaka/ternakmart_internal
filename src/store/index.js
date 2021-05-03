@@ -12,6 +12,7 @@ import jenis from "./jenis.module";
 import golongan from "./golongan.module";
 import menu from "./menu.module";
 import role from "./role.module";
+import transaksi from "./transaksi.module";
 
 Vue.use(Vuex);
 
@@ -30,5 +31,6 @@ export default new Vuex.Store({
     customer,
     menu,
     role,
+    transaksi,
   }
 });

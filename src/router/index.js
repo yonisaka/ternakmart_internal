@@ -79,6 +79,25 @@ const router = new Router({
       },
     },
     {
+      path: '/monitoring',
+      name: 'monitoring',
+      components: {
+        sidebar: AppSidebar,
+        header: AppHeader,
+        default: () => import("@/views/Index"),
+        footer: AppFooter,
+      },
+      children: [
+        {
+          path: 'transaksi',
+          component: () => import("@/views/monitoring/transaksi/Index")
+        },
+      ],
+      meta: {
+        requiresAuth: true
+      },
+    },
+    {
       path: '/user',
       name: 'user',
       components: {
@@ -167,7 +186,30 @@ const router = new Router({
       meta: {
         requiresAuth: true
       },
-    }
+    },
+    {
+      path: '/data',
+      name: 'data',
+      components: {
+        sidebar: AppSidebar,
+        header: AppHeader,
+        default: () => import("@/views/Index"),
+        footer: AppFooter,
+      },
+      children: [
+        {
+          path: 'golongan',
+          component: () => import("@/views/data/golongan/Index")
+        },
+        {
+          path: 'jenis',
+          component: () => import("@/views/data/jenis/Index")
+        },
+      ],
+      meta: {
+        requiresAuth: true
+      },
+    },
   ]
 });
 

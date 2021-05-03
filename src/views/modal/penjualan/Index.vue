@@ -25,7 +25,8 @@
                             v-model="search"
                             append-icon="mdi-magnify"
                             label="Search"
-                            single-line
+                            solo
+                            clearable
                             hide-details
                         ></v-text-field>
                     </v-col>
@@ -90,7 +91,7 @@
                             :to="'penjualan/detail/'+item.id"
                             >
                                 <v-icon>
-                                mdi-magnify
+                                mdi-eye
                                 </v-icon>
                             </v-btn>
                         </template>
@@ -170,7 +171,7 @@ export default{
                     disabled: true,
                 },
                 {
-                    text: 'Persetujuan',
+                    text: 'Penjualan',
                     disabled: true,
                 },
             ],
@@ -218,11 +219,16 @@ export default{
             this.dialogImage = true
         },
         statusItem (id, ternak_st) {
-            console.log(ternak_st)
             this.id_ternak = id
-            this.form.ternak_st = ternak_st
-            this.dialogText = 'Yakin mengupdate data ini?'
-            this.dialogStatus = true
+            axios
+            .get("/ternak/"+ this.id_ternak)
+            .then((res) => {
+                this.form = res.data.ternak
+                this.form.ternak_st = ternak_st
+                this.dialogText = 'Yakin mengupdate data ini?'
+                this.dialogStatus = true
+            })
+            
         },
         closeStatus () {
             this.dialogStatus = false

@@ -4,6 +4,7 @@ export const SET_ERROR = "setError";
 export const SET_NAV = "setNav";
 
 export const SET_TERNAK = "setTernak";
+export const SET_TRANSAKSI = "setTransaksi";
 
 export const SET_USERS = "setUsers";
 export const SET_DOKTER = "setDokter";
