@@ -13,7 +13,7 @@
                     <v-list-item two-line>
                     <v-list-item-content>
                         <v-list-item-title class="font-weight-bold headline mb-4 mt-1" style="color: #139CA4">
-                        1.140
+                        {{ total_ternak }}
                         </v-list-item-title>
                         <div class="overline font-weight-bold">
                         Hewan Ternak
@@ -35,7 +35,7 @@
                     <v-list-item two-line>
                     <v-list-item-content>
                         <v-list-item-title class="font-weight-bold headline mb-4 mt-1" style="color: #139CA4">
-                        143
+                        {{ total_transaksi }}
                         </v-list-item-title>
                         <div class="overline font-weight-bold">
                         Ternak Terjual
@@ -57,7 +57,7 @@
                     <v-list-item two-line>
                     <v-list-item-content>
                         <v-list-item-title class="font-weight-bold headline mb-4 mt-1" style="color: #139CA4">
-                        143
+                        {{ total_ternak_verifikasi }}
                         </v-list-item-title>
                         <div class="overline font-weight-bold">
                         Verifikasi
@@ -79,7 +79,7 @@
                     <v-list-item two-line>
                     <v-list-item-content>
                         <v-list-item-title class="font-weight-bold headline mb-4 mt-1" style="color: #139CA4">
-                        16.700.000
+                        {{ formatPrice(total_ternak_harga_transaksi) }}
                         </v-list-item-title>
                         <div class="overline font-weight-bold">
                         Total Transaksi
@@ -112,7 +112,7 @@
                         smooth
                         >
                         <template v-slot:label="item">
-                            $ {{ item.value }}
+                            {{ item.value }}
                         </template>
                         </v-sparkline>
                     </v-sheet>
@@ -120,7 +120,7 @@
 
                     <v-card-text>
                     <div class="display-1 font-weight-thin">
-                        Sales Last 24h
+                        Total Transaksi 7 Hari terakhir
                     </div>
                     </v-card-text>
 
@@ -131,7 +131,7 @@
                         block
                         text
                     >
-                        Go to Report
+                        Download Laporan
                     </v-btn>
                     </v-card-actions>
                 </v-card>
@@ -155,7 +155,7 @@
                             <v-chip
                             color="primary"
                             >
-                                12
+                                {{ total_dokter }}
                             </v-chip>
                         </v-list-item>
                         <v-divider></v-divider>
@@ -169,7 +169,7 @@
                             <v-chip
                             color="secondary"
                             >
-                                173
+                                {{ total_customer }}
                             </v-chip>
                         </v-list-item>
                         <v-divider></v-divider>
@@ -183,7 +183,7 @@
                             <v-chip
                             color="red"
                             >
-                                43
+                                {{ total_menu }}
                             </v-chip>
                         </v-list-item>
                     </v-card-text>
@@ -193,6 +193,8 @@
     </v-container>
 </template>
 <script>
+import axios from "axios";
+
 export default {
     data() {
         return {
@@ -202,16 +204,61 @@ export default {
                     disabled: true,
                 }
             ],
-            value: [
-                423,
-                446,
-                675,
-                510,
-                590,
-                610,
-                160,
-            ],
+            value: [],
+            // value: [
+            //     423,
+            //     446,
+            //     675,
+            //     510,
+            //     590,
+            //     610,
+            //     160,
+            // ],
+            total_ternak: '',
+            total_transaksi: '',
+            total_ternak_verifikasi: '',
+            total_ternak_harga_transaksi: '',
+            total_dokter: '',
+            total_customer: '',
+            total_menu: '',
         }
+    },
+    mounted() {
+        const total_ternak = axios.get("/total_ternak")
+        const total_transaksi = axios.get("/total_transaksi")
+        const total_ternak_verifikasi = axios.get("/total_ternak_verifikasi")
+        const total_ternak_harga_transaksi = axios.get("/total_ternak_harga_transaksi")
+        const total_dokter = axios.get("/total_user/" + 2)
+        const total_customer = axios.get("/total_user/" + 4)
+        const total_menu = axios.get("/total_menu")
+        const chart_transkasi = axios.get("/chart_transkasi")
+        axios.all([
+            total_ternak, 
+            total_transaksi, 
+            total_ternak_verifikasi, 
+            total_ternak_harga_transaksi,
+            total_dokter,
+            total_customer,
+            total_menu,
+            chart_transkasi,
+        ]).then(axios.spread((...responses) => {
+            this.total_ternak = responses[0].data
+            this.total_transaksi = responses[1].data
+            this.total_ternak_verifikasi = responses[2].data
+            this.total_ternak_harga_transaksi = responses[3].data.total_transaksi
+            this.total_dokter = responses[4].data
+            this.total_customer = responses[5].data
+            this.total_menu = responses[6].data
+            this.value = responses[7].data
+        }))
+    },
+    computed: {
+    },
+    methods: {
+        formatPrice(value) {
+            let val = (value/1).toFixed(2).replace('.', ',')
+            return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+        },
     }
 }
 </script>
