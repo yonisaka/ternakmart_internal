@@ -38,7 +38,7 @@
                     >
                     <v-card-text>
                         <v-row>
-                            <v-col cols="6">
+                            <v-col cols="6" sm="12" lg="12">
                                 <v-row>
                                     <v-col cols="5">
                                         <div class="font-weight-bold" color="black"> Nama Ternak </div>
@@ -100,7 +100,7 @@
                                     </v-col>
                                 </v-row>
                             </v-col>
-                            <v-col cols="6">
+                            <v-col cols="6" sm="12" lg="12">
                                 <v-img
                                 :lazy-src="ternak.file_path"
                                 :src="ternak.file_path"
@@ -127,7 +127,7 @@
                     >
                         <v-card-text>
                             <v-row>
-                                <v-col cols="6">
+                                <v-col cols="6" sm="12" lg="12">
                                     <v-row>
                                         <v-col cols="5">
                                             <div class="font-weight-bold" color="black"> RFID </div>
@@ -172,7 +172,7 @@
                                         </v-col>
                                     </v-row>
                                 </v-col>
-                                <v-col cols="6">
+                                <v-col cols="6" sm="12" lg="12">
                                     <v-row>
                                         <v-col cols="5">
                                             <div class="font-weight-bold" color="black"> Pengobatan </div>

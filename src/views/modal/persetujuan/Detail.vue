@@ -15,7 +15,8 @@
         </v-btn>
         </v-toolbar>
         <v-row class="my-2">
-            <v-col cols="6" sm="12" lg="12">
+            <v-col 
+            >
                 <v-card
                 elevation="4"
                 >
@@ -26,7 +27,7 @@
                     <v-card-text>
                         <v-container>
                             <v-row>
-                                <v-col cols="6" sm="12" lg="6">
+                                <v-col sm="12" cols="6" lg="6">
                                     <v-img
                                     :lazy-src="ternak.file_path"
                                     :src="ternak.file_path"
@@ -35,7 +36,7 @@
                                     @error="$event.target.src='img/default.png'"
                                     ></v-img>
                                 </v-col>
-                                <v-col cols="6" sm="12" lg="6">
+                                <v-col sm="12" cols="6" lg="6">
                                     <v-row>
                                         <v-col cols="5">
                                             <div class="font-weight-bold" color="black"> Nama Ternak </div>
@@ -101,7 +102,7 @@
                                 </div>
                             </v-row>
                             <v-row>
-                                <v-col cols="6">
+                                <v-col cols="6" sm="12" lg="6">
                                     <v-text-field
                                         label="RFID"
                                         v-model="ternak.rfid"
@@ -118,7 +119,7 @@
                                         form="verifikasi"
                                     ></v-text-field>
                                 </v-col>
-                                <v-col cols="6">
+                                <v-col cols="6" sm="12" lg="6">
                                     <v-text-field
                                         label="Harga Perkilo"
                                         suffix="/ Kg"

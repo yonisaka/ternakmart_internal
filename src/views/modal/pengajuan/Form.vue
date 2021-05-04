@@ -43,7 +43,9 @@
                         </v-row>
                         <v-row>
                             <v-col
-                                cols="4"
+                                cols="12"
+                                lg="4"
+                                sm="12"
                             >
                                 <v-text-field
                                 v-model="form.ternak_nama"
@@ -54,7 +56,11 @@
                                 required
                                 ></v-text-field>
                             </v-col>
-                            <v-col cols="2">
+                            <v-col 
+                                cols="6"
+                                lg="2"
+                                sm="6"
+                            >
                                 <v-select
                                 v-model="form.jenis_kelamin"
                                 item-text="text"
@@ -68,7 +74,11 @@
                                 @change="filterJenis"
                                 ></v-select>
                             </v-col>
-                            <v-col cols="3">
+                            <v-col 
+                                cols="6"
+                                lg="3"
+                                sm="6"
+                            >
                                 <v-select
                                 v-model="form.id_golongan"
                                 item-text="golongan_nama"
@@ -82,7 +92,11 @@
                                 @change="filterJenis"
                                 ></v-select>
                             </v-col>
-                            <v-col cols="3">
+                            <v-col 
+                                cols="6"
+                                lg="3"
+                                sm="6"
+                            >
                                 <v-select
                                 v-model="form.id_jenis"
                                 item-text="jenis_nama"
@@ -95,7 +109,11 @@
                                 required
                                 ></v-select>
                             </v-col>
-                            <v-col cols="6">
+                            <v-col 
+                                cols="6"
+                                lg="6"
+                                sm="6"    
+                            >
                                 <v-file-input
                                 @change="onFilePicked"
                                 show-size
@@ -106,7 +124,11 @@
                                 label="Foto Ternak"
                                 ></v-file-input>
                             </v-col>
-                            <v-col cols="2">
+                            <v-col 
+                                cols="4"
+                                lg="2"
+                                sm="4"
+                            >
                                 <v-text-field
                                 v-model="form.ternak_berat"
                                 color="teal darken-2"
@@ -116,7 +138,11 @@
                                 required
                                 ></v-text-field>
                             </v-col>
-                            <v-col cols="2">
+                            <v-col 
+                                cols="4"
+                                lg="2"
+                                sm="4"
+                            >
                                 <v-text-field
                                 v-model="form.ternak_umur"
                                 color="teal darken-2"
@@ -126,7 +152,11 @@
                                 required
                                 ></v-text-field>
                             </v-col>
-                            <v-col cols="2">
+                            <v-col 
+                                cols="4"
+                                lg="2"
+                                sm="4"
+                            >
                                 <v-text-field
                                 v-model="form.lingkar_perut"
                                 color="teal darken-2"
@@ -136,7 +166,11 @@
                                 required
                                 ></v-text-field>
                             </v-col>
-                            <v-col v-if="id_ternak" cols="6">
+                            <v-col v-if="id_ternak" 
+                                cols="12"
+                                lg="6"
+                                sm="12"
+                            >
                                 <v-img
                                 :lazy-src="form.file_path"
                                 :src="form.file_path"
@@ -144,7 +178,11 @@
                                 @error="$event.target.src='img/default.png'"
                                 ></v-img>
                             </v-col>
-                            <v-col v-if="id_ternak" cols="6">
+                            <v-col v-if="id_ternak" 
+                                cols="12"
+                                lg="6"
+                                sm="12"
+                            >
                                 <v-textarea
                                 v-model="form.ternak_deskripsi"
                                 color="teal darken-2"
@@ -176,7 +214,11 @@
                                 </template>
                                 </v-textarea>
                             </v-col>
-                            <v-col cols="6">
+                            <v-col
+                                cols="12"
+                                lg="6"
+                                sm="12"
+                            >
                                 <v-menu
                                     v-model="menu"
                                     :close-on-content-click="false"
@@ -203,7 +245,11 @@
                                     ></v-date-picker>
                                 </v-menu>
                             </v-col>
-                            <v-col cols="6">
+                            <v-col 
+                                cols="12"
+                                lg="6"
+                                sm="12"
+                            >
                                 <v-text-field
                                 v-model="form.harga_pengajuan"
                                 color="teal darken-2"

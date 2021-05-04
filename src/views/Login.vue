@@ -49,7 +49,7 @@
                   </v-card-actions>
                </v-card>
                <div class="text-center">
-                  <router-link class="subtitle-2" :to="{ name: 'register' }">
+                  <router-link class="subtitle-2" :to="{ name: 'register_page' }">
                      <small>Create new account</small>
                   </router-link>
                </div>

@@ -180,7 +180,9 @@ export default{
                 this.dialogDelete = false
                 this.$router.go()
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                console.log(err)
+            });
         },
     }
 }

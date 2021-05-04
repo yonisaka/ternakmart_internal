@@ -23,6 +23,21 @@ const router = new Router({
       component: () => import("@/views/Register"),
     },
     {
+      path: "/register_page",
+      name: "register_page",
+      component: () => import("@/views/RegisterPage"),
+    },
+    {
+      path: "/register_dokter",
+      name: "register_dokter",
+      component: () => import("@/views/RegisterDokter"),
+    },
+    {
+      path: "/register_penjual",
+      name: "register_penjual",
+      component: () => import("@/views/RegisterPenjual"),
+    },
+    {
       path: '/',
       name: 'dashboard',
       components: {
