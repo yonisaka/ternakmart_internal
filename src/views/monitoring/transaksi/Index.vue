@@ -44,7 +44,7 @@
                             class="elevation-1"
                             @page-count="pageCount = $event"
                         >
-                        <template v-slot:[`item.actions`]="{ item }">
+                        <!-- <template v-slot:[`item.actions`]="{ item }">
                             <v-btn 
                             small 
                             icon
@@ -56,7 +56,7 @@
                                 mdi-eye
                                 </v-icon>
                             </v-btn>
-                        </template>
+                        </template> -->
                         </v-data-table>
                     </v-col>
                 </v-row>
@@ -105,7 +105,7 @@ export default {
                 { text: "Total", align: "center", sortable: false, value: "total_harga" },
                 { text: "Status", align: "center", sortable: false, value: "transaksi_st" },
                 { text: "Tanggal", align: "center", sortable: false, value: "transaksi_tanggal" },
-                { text: "Actions", align: "center", sortable: false, value: "actions" },
+                // { text: "Actions", align: "center", sortable: false, value: "actions" },
             ],
         }
     },

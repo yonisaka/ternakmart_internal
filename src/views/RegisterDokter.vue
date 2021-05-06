@@ -27,6 +27,13 @@
                                         label="Nama Lengkap"
                                         required
                                         ></v-text-field>
+                                        <v-file-input
+                                        @change="onFilePicked"
+                                        show-size
+                                        counter
+                                        multiple
+                                        label="Foto"
+                                        ></v-file-input>
                                         <v-select
                                         v-model="form.jenis_kelamin"
                                         item-text="text"
@@ -130,7 +137,7 @@
 <script>
 import { mapState } from "vuex";
 import ApiService from "@/common/api.service";
-// import axios from "axios";
+import axios from "axios";
 
 export default {
     name: "Register",
@@ -162,24 +169,10 @@ export default {
         })
     },
     methods: {
+        onFilePicked(files){
+            this.form.file = files[0];
+        },
         onSubmit() {
-            // this.$store
-            //     .dispatch(REGISTER, {
-            //         name: this.name,
-            //         email: this.email,
-            //         password: this.password,
-            //         password_confirmation: this.password_confirmation,
-            //         role_id: '3'
-            //     })
-            //     .then((response) => {
-            //         this.$toast.success(response.message, {
-            //             type: "success",
-            //             position: "top-right",
-            //             duration: 3000,
-            //             dismissible: true,
-            //         });
-            //         this.$router.push({ name: "login" })
-            //     });
             this.form.name = this.form.nama_lengkap
             this.form.role_id = '2'
             this.form.user_st = 'Tidak Aktif'
@@ -187,7 +180,20 @@ export default {
                 ApiService.post("users", this.form)
                 .then((res) => {
                     this.form.id_user = res.data.user.id
-                    ApiService.post("dokter", this.form)
+                    let formData = new FormData();
+                    formData.append("nama_lengkap", this.form.nama_lengkap);
+                    formData.append("nomor_hp", this.form.nomor_hp);
+                    formData.append("tanggal_lahir", this.form.tanggal_lahir);
+                    formData.append("alamat", this.form.alamat);
+                    formData.append("jenis_kelamin", this.form.jenis_kelamin);
+                    formData.append("id_user", this.form.id_user);
+                    formData.append("file", this.form.file);
+
+                    axios.post("dokter", formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    })
                     .then(() => {
                         this.$router.push({ path: '/login'})
                     })

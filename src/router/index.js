@@ -107,6 +107,10 @@ const router = new Router({
           path: 'transaksi',
           component: () => import("@/views/monitoring/transaksi/Index")
         },
+        {
+          path: 'payment',
+          component: () => import("@/views/monitoring/payment/Index")
+        },
       ],
       meta: {
         requiresAuth: true

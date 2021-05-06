@@ -51,6 +51,17 @@
                             class="elevation-1"
                             @page-count="pageCount = $event"
                         >
+                        <template v-slot:[`item.foto`]="{ item }">
+                            <v-img
+                            max-height="70px"
+                            max-width="70px"
+                            :lazy-src="item.file_path"
+                            :src="item.file_path"
+                            aspect-ratio="1.8"
+                            @error="$event.target.src='img/default.png'"
+                            @click="showImage(item.file_path)"
+                            ></v-img>
+                        </template>
                         <template v-slot:[`item.actions`]="{ item }">
                             <v-btn 
                             small 
@@ -100,6 +111,28 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
+        <v-dialog v-model="dialogImage" max-width="700px">
+                    <v-card>
+                        <v-card-title class="headline">
+                            <!-- <span class="mx-auto"> {{ dialogText }} </span> -->
+                        </v-card-title>
+                        <v-card-text>
+                            <v-img
+                            max-height="700px"
+                            max-width="700px"
+                            :src="foto"
+                            aspect-ratio="1.8"
+                            @error="$event.target.src='img/default.png'"
+                            ></v-img>
+                        </v-card-text>
+                        <!-- <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
+                        <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
+                        <v-spacer></v-spacer>
+                        </v-card-actions> -->
+                    </v-card>
+                </v-dialog>
     </v-container>
 </template>
 <script>
@@ -130,6 +163,7 @@ export default{
             headers: [
                 { text: "ID", align: "start", sortable: false, value: "id" },
                 { text: "Nama Lengkap", align: "start", sortable: false, value: "nama_lengkap" },
+                { text: "Foto", align: "center", sortable: false, value: "foto" },
                 { text: "Tanggal Lahir", align: "start", sortable: false, value: "tanggal_lahir" },
                 { text: "Nomor HP", align: "center", sortable: false, value: "nomor_hp" },
                 { text: "Alamat", align: "center", sortable: false, value: "alamat" },
@@ -138,6 +172,7 @@ export default{
             dialogText: '',
             dialogDelete: false,
             dialogForm: false,
+            dialogImage: false,
         }
     },
     beforeRouteEnter(to, from, next) {
@@ -161,6 +196,10 @@ export default{
         // }
     },
     methods: {
+        showImage (file_path) {
+            this.foto = file_path
+            this.dialogImage = true
+        },
         deleteItem (id_dokter, id_user) {
             this.id_dokter = id_dokter
             this.id_user = id_user
