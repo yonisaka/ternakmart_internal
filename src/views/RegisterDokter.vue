@@ -27,6 +27,12 @@
                                         label="Nama Lengkap"
                                         required
                                         ></v-text-field>
+                                        <v-text-field
+                                        v-model="form.strv"
+                                        color="teal darken-2"
+                                        label="Surat Tanda Registrasi Verifikasi"
+                                        required
+                                        ></v-text-field>
                                         <v-file-input
                                         @change="onFilePicked"
                                         show-size
@@ -182,6 +188,7 @@ export default {
                     this.form.id_user = res.data.user.id
                     let formData = new FormData();
                     formData.append("nama_lengkap", this.form.nama_lengkap);
+                    formData.append("strv", this.form.strv);
                     formData.append("nomor_hp", this.form.nomor_hp);
                     formData.append("tanggal_lahir", this.form.tanggal_lahir);
                     formData.append("alamat", this.form.alamat);
