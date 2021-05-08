@@ -38,7 +38,15 @@
                     >
                     <v-card-text>
                         <v-row>
-                            <v-col cols="6" sm="12" lg="12">
+                            <v-col cols="12" sm="12" lg="6">
+                                <v-img
+                                :lazy-src="ternak.file_path"
+                                :src="ternak.file_path"
+                                aspect-ratio="1.8"
+                                @error="$event.target.src='img/default.png'"
+                                ></v-img>
+                            </v-col>
+                            <v-col cols="12" sm="12" lg="6">
                                 <v-row>
                                     <v-col cols="5">
                                         <div class="font-weight-bold" color="black"> Nama Ternak </div>
@@ -100,14 +108,6 @@
                                     </v-col>
                                 </v-row>
                             </v-col>
-                            <v-col cols="6" sm="12" lg="12">
-                                <v-img
-                                :lazy-src="ternak.file_path"
-                                :src="ternak.file_path"
-                                aspect-ratio="1.8"
-                                @error="$event.target.src='img/default.png'"
-                                ></v-img>
-                            </v-col>
                         </v-row>
                     </v-card-text>
                     </v-card>
@@ -127,7 +127,7 @@
                     >
                         <v-card-text>
                             <v-row>
-                                <v-col cols="6" sm="12" lg="12">
+                                <v-col cols="12" sm="12" lg="6">
                                     <v-row>
                                         <v-col cols="5">
                                             <div class="font-weight-bold" color="black"> RFID </div>
@@ -172,7 +172,7 @@
                                         </v-col>
                                     </v-row>
                                 </v-col>
-                                <v-col cols="6" sm="12" lg="12">
+                                <v-col cols="12" sm="12" lg="6">
                                     <v-row>
                                         <v-col cols="5">
                                             <div class="font-weight-bold" color="black"> Pengobatan </div>
@@ -232,7 +232,7 @@
                     >
                         <v-card-text>
                             <v-row>
-                                <v-col cols="6">
+                                <v-col cols="12" lg="6" sm="12">
                                     <v-row>
                                         <v-col cols="5">
                                             <div class="font-weight-bold" color="black"> Harga Ditetapkan </div>
@@ -242,7 +242,7 @@
                                         </v-col>
                                     </v-row>
                                 </v-col>
-                                <v-col cols="6">
+                                <v-col cols="12" lg="6" sm="12">
                                     <v-row>
                                         <v-col cols="5">
                                             <div class="font-weight-bold" color="black"> Catatan Verifikasi </div>

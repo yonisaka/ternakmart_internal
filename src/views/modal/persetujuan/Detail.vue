@@ -27,7 +27,7 @@
                     <v-card-text>
                         <v-container>
                             <v-row>
-                                <v-col sm="12" cols="6" lg="6">
+                                <v-col sm="12" cols="12" lg="6">
                                     <v-img
                                     :lazy-src="ternak.file_path"
                                     :src="ternak.file_path"
@@ -36,7 +36,7 @@
                                     @error="$event.target.src='img/default.png'"
                                     ></v-img>
                                 </v-col>
-                                <v-col sm="12" cols="6" lg="6">
+                                <v-col sm="12" cols="12" lg="6">
                                     <v-row>
                                         <v-col cols="5">
                                             <div class="font-weight-bold" color="black"> Nama Ternak </div>
@@ -102,7 +102,7 @@
                                 </div>
                             </v-row>
                             <v-row>
-                                <v-col cols="6" sm="12" lg="6">
+                                <v-col cols="12" sm="12" lg="6">
                                     <v-text-field
                                         label="RFID"
                                         v-model="ternak.rfid"
@@ -119,7 +119,7 @@
                                         form="verifikasi"
                                     ></v-text-field>
                                 </v-col>
-                                <v-col cols="6" sm="12" lg="6">
+                                <v-col cols="12" sm="12" lg="6">
                                     <v-text-field
                                         label="Harga Perkilo"
                                         suffix="/ Kg"
@@ -182,7 +182,7 @@
                                     @submit.prevent="onSubmit()"
                                     >
                                     <v-row>
-                                        <v-col lg="4" sm="12">
+                                        <v-col lg="4" cols="12" sm="12">
                                             <v-text-field
                                                 label="Anamnesa"
                                                 v-model="form.anamnesa"
@@ -251,7 +251,7 @@
                                                 ></v-date-picker>
                                             </v-menu>
                                         </v-col>
-                                        <v-col lg="4" sm="12">
+                                        <v-col lg="4" cols="12" sm="12">
                                             <Combobox v-model="form.kelenjar_limfe" :value="form.kelenjar_limfe" :label="'Kelenjar Limfe'"/>
                                             <Combobox v-model="form.alat_pernafasan" :label="'Susunan Alat Pernafasan'"/>
                                             <Combobox v-model="form.alat_peredaran_darah" :label="'Susunan Alat Peredaran Darah'"/>
@@ -262,7 +262,7 @@
                                             <Combobox v-model="form.lain_lain" :label="'Lain-lain'"/>
                                         
                                         </v-col>
-                                        <v-col lg="4" sm="12">
+                                        <v-col lg="4" cols="12" sm="12">
                                             <v-textarea
                                             outlined
                                             v-model="form.diagnosa_awal"
@@ -340,7 +340,7 @@
                             <v-card flat>
                                 <v-card-text>
                                     <v-row>
-                                        <v-col sm="12" md="4">
+                                        <v-col sm="12" cols="12" md="4">
                                             <v-text-field
                                                 class="ml-2"
                                                 v-model="search"

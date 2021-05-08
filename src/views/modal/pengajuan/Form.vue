@@ -57,9 +57,9 @@
                                 ></v-text-field>
                             </v-col>
                             <v-col 
-                                cols="6"
+                                cols="12"
                                 lg="2"
-                                sm="6"
+                                sm="12"
                             >
                                 <v-select
                                 v-model="form.jenis_kelamin"
@@ -75,9 +75,9 @@
                                 ></v-select>
                             </v-col>
                             <v-col 
-                                cols="6"
+                                cols="12"
                                 lg="3"
-                                sm="6"
+                                sm="12"
                             >
                                 <v-select
                                 v-model="form.id_golongan"
@@ -93,9 +93,9 @@
                                 ></v-select>
                             </v-col>
                             <v-col 
-                                cols="6"
+                                cols="12"
                                 lg="3"
-                                sm="6"
+                                sm="12"
                             >
                                 <v-select
                                 v-model="form.id_jenis"
@@ -110,9 +110,9 @@
                                 ></v-select>
                             </v-col>
                             <v-col 
-                                cols="6"
+                                cols="12"
                                 lg="6"
-                                sm="6"    
+                                sm="12"    
                             >
                                 <v-file-input
                                 @change="onFilePicked"
