@@ -126,7 +126,7 @@ export default{
                 { text: "Breed", value: "jenis_nama", sortable: false },
                 { text: "Berat (kg)", value: "ternak_berat", sortable: false },
                 { text: "Lingkar Perut (cm)", value: "lingkar_perut", sortable: false },
-                { text: "Umur (th)", value: "ternak_umur", sortable: false },
+                { text: "Umur (bln)", value: "ternak_umur", sortable: false },
                 { text: "Harga Pengajuan", value: "harga_pengajuan", sortable: false},
                 { text: "Status", align: "center", value: "verifikasi_st", sortable: false},
                 { text: "Actions", value: "actions", sortable: false },

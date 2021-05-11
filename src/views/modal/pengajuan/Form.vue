@@ -244,12 +244,6 @@
                                     @input="menu = false"
                                     ></v-date-picker>
                                 </v-menu>
-                            </v-col>
-                            <v-col 
-                                cols="12"
-                                lg="6"
-                                sm="12"
-                            >
                                 <v-text-field
                                 v-model="form.harga_pengajuan"
                                 color="teal darken-2"
@@ -258,6 +252,36 @@
                                 dense
                                 required
                                 ></v-text-field>
+                            </v-col>
+                            <v-col 
+                                cols="12"
+                                lg="6"
+                                sm="12"
+                            >
+                                <v-select
+                                v-model="form.province_id"
+                                item-text="province"
+                                item-value="province_id"
+                                :items="provinsi"
+                                color="teal"
+                                label="Provinsi"
+                                outlined
+                                dense
+                                required
+                                @change="filterCity"
+                                ></v-select>
+                                <v-select
+                                v-model="form.city_id"
+                                item-text="city_name"
+                                item-value="city_id"
+                                :items="kota"
+                                color="teal"
+                                label="Kota / Kabupaten"
+                                outlined
+                                dense
+                                required
+                                @change="filterCity"
+                                ></v-select>
                             </v-col>
                         </v-row>
                         <v-row class="text-right">
@@ -325,9 +349,20 @@ export default {
             ],
             menu: false,
             errors: {},
+            provinsi: [],
+            kota:[
+                {
+                    'city_name' : 'Pilih provinsi terlebih dahulu',
+                    'city_id' : ''
+                }
+            ],
         }
     },
     mounted() {
+        axios.get("/lokasi/provinsi")
+        .then((res) => {
+            this.provinsi = res.data.provinsi
+        })
         this.$store.dispatch(FETCH_GOL);
         this.id_ternak = this.$route.params.id || ''
 
@@ -340,12 +375,17 @@ export default {
                     'id': res.data.ternak.id_jenis,
                     'jenis_nama': res.data.ternak.jenis_nama
                 }
+                this.kota = {
+                    'city_id': res.data.ternak.city_id,
+                    'city_name': res.data.ternak.city_name
+                }
             })
+            
             // .catch((err) => console.log(err));
         }
     },
     computed: {
-        ...mapGetters(["golongan"]),
+        ...mapGetters(["golongan"])
     },
     methods: {
         filterJenis() {
@@ -353,6 +393,14 @@ export default {
             .get("/jenis/"+ this.form.id_golongan + "/" + this.form.jenis_kelamin)
             .then((res) => {
                 this.jenis = res.data.jenis;
+            })
+            // .catch((err) => console.log(err));
+        },
+        filterCity() {
+            axios
+            .get("lokasi/kota/"+ this.form.province_id)
+            .then((res) => {
+                this.kota = res.data.kota;
             })
             // .catch((err) => console.log(err));
         },
@@ -372,6 +420,8 @@ export default {
             formData.append("ternak_deskripsi", this.form.ternak_deskripsi);
             formData.append("harga_pengajuan", this.form.harga_pengajuan);
             formData.append("tgl_penerimaan", this.form.tgl_penerimaan);
+            formData.append("province_id", this.form.province_id);
+            formData.append("city_id", this.form.city_id);
 
             if (this.$route.params.id){
                 axios

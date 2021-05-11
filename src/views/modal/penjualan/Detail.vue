@@ -18,7 +18,7 @@
                     </v-toolbar-title>
                     <v-spacer></v-spacer>
                     <v-btn
-                    to="/modal/persetujuan"
+                    to="/modal/penjualan"
                     dense
                     color="secondary"
                     >

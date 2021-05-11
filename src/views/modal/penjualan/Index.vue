@@ -182,7 +182,7 @@ export default{
                 { text: "Breed", value: "jenis_nama", sortable: false },
                 { text: "Berat (kg)", value: "ternak_berat", sortable: false },
                 { text: "Lingkar Perut (cm)", value: "lingkar_perut", sortable: false },
-                { text: "Umur (th)", value: "ternak_umur", sortable: false },
+                { text: "Umur (bln)", value: "ternak_umur", sortable: false },
                 { text: "Harga", value: "ternak_harga", sortable: false},
                 { text: "Tanggal Penerimaan", value: "tgl_penerimaan", sortable: false},
                 { text: "Status Jual", align: "center", value: "ternak_st", sortable: false},
