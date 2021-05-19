@@ -596,6 +596,13 @@
                 </v-card-text>
             </v-card>
         </v-dialog>
+        <v-snackbar
+            v-model="snackbar"
+            timeout="2000"
+            :color="color"
+            >
+            {{ message }}
+        </v-snackbar>
     </v-container>
 </template>
 <script>
@@ -610,6 +617,8 @@ export default {
     },
     data() {
         return { 
+            snackbar: false,
+            message: '',
             tab: null,
             id_ternak: '',
             form: {},
@@ -789,14 +798,23 @@ export default {
             .then(() => {
                 axios.put("/ternak/" + this.id_ternak, this.ternak)
                 .then(() => {
-                    this.$router.go()
+                    this.snackbar = true
+                    this.message = 'Berhasil Update Data'
+                    this.color = 'green'
+                    setTimeout( () => this.$router.go(), 1000);
                 })
                 .catch((err) => {
                     this.errors = err.response.data
+                    this.snackbar = true
+                    this.message = 'Gagal Update Data'
+                    this.color = 'red'
                 });
             })
             .catch((err) => {
                 this.errors = err.response.data
+                this.snackbar = true
+                this.message = 'Gagal Update Data'
+                this.color = 'red'
             });
         }
     }

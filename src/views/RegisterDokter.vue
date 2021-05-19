@@ -149,6 +149,14 @@
                 </v-flex>
             </v-layout>
         </v-container>
+
+        <v-snackbar
+            v-model="snackbar"
+            timeout="2000"
+            :color="color"
+            >
+            {{ message }}
+        </v-snackbar>
     </v-app>
 </template>
 <script>
@@ -160,6 +168,8 @@ export default {
     name: "Register",
     data() {
         return {
+            snackbar: false,
+            message: '',
             isLoading: false,
             show_password: false,
             show_password_confirmation: false,
@@ -217,11 +227,17 @@ export default {
                         }
                     })
                     .then(() => {
-                        this.$router.push({ path: '/login'})
+                        this.snackbar = true
+                        this.message = 'Berhasil Pendaftaran'
+                        this.color = 'green'
+                        setTimeout( () => this.$router.push({ path: '/login'}), 2000);
                     })
                 })
                 .catch((err) => {
                     this.errors = err.response.data
+                    this.snackbar = true
+                    this.message = 'Gagal Pendaftaran'
+                    this.color = 'red'
                     this.isLoading = false
                 });
         }

@@ -67,6 +67,14 @@
             </v-flex>
          </v-layout>
       </v-container>
+
+      <v-snackbar
+            v-model="snackbar"
+            timeout="2000"
+            :color="color"
+            >
+            {{ message }}
+        </v-snackbar>
    </v-app>
 </template>
 <script>
@@ -77,6 +85,8 @@ export default {
    name: "Login",
    data() {
       return {
+         snackbar: false,
+         message: '',
          isLoading: false,
          email: null,
          password: null,
@@ -94,7 +104,10 @@ export default {
             .then(() => {
                // console.log(res)
                this.isLoading = false
-               this.$router.push({ name: "dashboard" })
+               this.snackbar = true
+               this.message = 'Berhasil Login'
+               this.color = 'green'
+               setTimeout( () => this.$router.push({ name: "dashboard" }), 1000);
             })
             this.isLoading = false
       }

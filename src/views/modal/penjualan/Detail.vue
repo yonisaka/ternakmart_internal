@@ -130,90 +130,116 @@
                                 <v-col cols="12" sm="12" lg="6">
                                     <v-row>
                                         <v-col cols="5">
-                                            <div class="font-weight-bold" color="black"> RFID </div>
+                                            <div class="font-weight-bold" color="black"> Anamnesa </div>
                                         </v-col>
                                         <v-col cols="5">
-                                            <div class="font-weight-bold" color="black">: {{ form.rfid }} </div>
+                                            <div class="font-weight-bold" color="black">: {{ form.anamnesa }} </div>
                                         </v-col>
                                     </v-row>
                                     <v-row>
                                         <v-col cols="5">
-                                            <div class="font-weight-bold" color="black"> Temperatur </div>
+                                            <div class="font-weight-bold" color="black"> Ekspresi Muka </div>
                                         </v-col>
                                         <v-col cols="5">
-                                            <div class="font-weight-bold" color="black">: {{ form.temperatur }} </div>
+                                            <div class="font-weight-bold" color="black">: {{ form.ekspresi_muka }} </div>
                                         </v-col>
                                     </v-row>
                                     <v-row v-if="ternak.jenis_kelamin == 'B'">
                                         <v-col cols="5">
-                                            <div class="font-weight-bold" color="black"> Umur Bunting </div>
+                                            <div class="font-weight-bold" color="black"> Kondisi Badan </div>
                                         </v-col>
                                         <v-col cols="5">
-                                            <div class="font-weight-bold" color="black">: {{ form.umur_bunting }} </div>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="5">
-                                            <div class="font-weight-bold" color="black"> Tonus Rumen </div>
-                                        </v-col>
-                                        <v-col cols="5">
-                                            <div class="font-weight-bold" color="black">: {{ form.tonus_rumen }} </div>
+                                            <div class="font-weight-bold" color="black">: {{ form.kondisi_badan }} </div>
                                         </v-col>
                                     </v-row>
                                     <v-row>
                                         <v-col cols="5">
-                                            <div class="font-weight-bold" color="black"> Status Vaksin </div>
+                                            <div class="font-weight-bold" color="black"> Frekuensi Nafas </div>
                                         </v-col>
                                         <v-col cols="5">
-                                            <div class="font-weight-bold" color="black">: 
-                                                <span v-if="form.vaksin_st == '1'">Sudah</span>
-                                                <span v-if="form.vaksin_st == '0'">Belum</span>
-                                            </div>
+                                            <div class="font-weight-bold" color="black">: {{ form.frekuensi_nafas }} </div>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="5">
+                                            <div class="font-weight-bold" color="black"> Pulsus </div>
+                                        </v-col>
+                                        <v-col cols="5">
+                                            <div class="font-weight-bold" color="black">: {{ form.pulsus }} </div>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="5">
+                                            <div class="font-weight-bold" color="black"> Suhu </div>
+                                        </v-col>
+                                        <v-col cols="5">
+                                            <div class="font-weight-bold" color="black">: {{ form.suhu }} </div>
                                         </v-col>
                                     </v-row>
                                 </v-col>
                                 <v-col cols="12" sm="12" lg="6">
                                     <v-row>
                                         <v-col cols="5">
-                                            <div class="font-weight-bold" color="black"> Pengobatan </div>
+                                            <div class="font-weight-bold" color="black"> Kelenjar Limfe </div>
                                         </v-col>
                                         <v-col cols="5">
-                                            <div class="font-weight-bold" color="black">: {{ form.pengobatan }} </div>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row>
-                                        <v-col cols="5">
-                                            <div class="font-weight-bold" color="black"> Riwayat Kasus </div>
-                                        </v-col>
-                                        <v-col cols="5">
-                                            <div class="font-weight-bold" color="black">: {{ form.riwayat_kasus }} </div>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row v-if="ternak.jenis_kelamin == 'B'">
-                                        <v-col cols="5">
-                                            <div class="font-weight-bold" color="black"> Perkiraan Lahir </div>
-                                        </v-col>
-                                        <v-col cols="5">
-                                            <div class="font-weight-bold" color="black">: {{ form.perkiraan_lahir }} </div>
+                                            <div class="font-weight-bold" color="black">: {{ form.kelenjar_limfe }} </div>
                                         </v-col>
                                     </v-row>
                                     <v-row>
                                         <v-col cols="5">
-                                            <div class="font-weight-bold" color="black"> Inseminasi</div>
+                                            <div class="font-weight-bold" color="black"> Alat Pernafasan </div>
                                         </v-col>
                                         <v-col cols="5">
-                                            <div class="font-weight-bold" color="black">: {{ form.inseminasi }} </div>
+                                            <div class="font-weight-bold" color="black">: {{ form.alat_pernafasan }} </div>
                                         </v-col>
                                     </v-row>
                                     <v-row>
                                         <v-col cols="5">
-                                            <div class="font-weight-bold" color="black"> Obat Cacing </div>
+                                            <div class="font-weight-bold" color="black"> Alat Peredaran Darah </div>
                                         </v-col>
                                         <v-col cols="5">
-                                            <div class="font-weight-bold" color="black">: 
-                                                <span v-if="form.obat_cacing == '1'">Sudah</span>
-                                                <span v-if="form.obat_cacing == '0'">Belum</span>
-                                            </div>
+                                            <div class="font-weight-bold" color="black">: {{ form.alat_peredaran_darah }} </div>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="5">
+                                            <div class="font-weight-bold" color="black"> Alat Pencernaan </div>
+                                        </v-col>
+                                        <v-col cols="5">
+                                            <div class="font-weight-bold" color="black">: {{ form.alat_pencernaan }} </div>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="5">
+                                            <div class="font-weight-bold" color="black"> Alat Kelamin dan Perkencingan </div>
+                                        </v-col>
+                                        <v-col cols="5">
+                                            <div class="font-weight-bold" color="black">: {{ form.alat_kelamin_perkencingan }} </div>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="5">
+                                            <div class="font-weight-bold" color="black"> Saraf </div>
+                                        </v-col>
+                                        <v-col cols="5">
+                                            <div class="font-weight-bold" color="black">: {{ form.saraf }} </div>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="5">
+                                            <div class="font-weight-bold" color="black"> Anggota Gerak </div>
+                                        </v-col>
+                                        <v-col cols="5">
+                                            <div class="font-weight-bold" color="black">: {{ form.anggota_gerak }} </div>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="5">
+                                            <div class="font-weight-bold" color="black"> Lain-lain </div>
+                                        </v-col>
+                                        <v-col cols="5">
+                                            <div class="font-weight-bold" color="black">: {{ form.lain_lain }} </div>
                                         </v-col>
                                     </v-row>
                                 </v-col>

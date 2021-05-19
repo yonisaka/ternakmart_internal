@@ -291,7 +291,17 @@
                                 color="primary"
                                 :disabled="isLoading"
                                 >
-                                    Simpan
+                                    <span v-if="isLoading">
+                                        Loading 
+                                        <v-progress-circular
+                                        :size="15"
+                                        indeterminate
+                                        color="secondary"
+                                        ></v-progress-circular>
+                                    </span>
+                                    <span v-else>
+                                        Simpan
+                                    </span>
                                 </v-btn>
                             </v-col>
                         </v-row>
@@ -299,6 +309,13 @@
                 </v-form>
             </v-card-text>
         </v-card>
+        <v-snackbar
+            v-model="snackbar"
+            timeout="2000"
+            :color="color"
+            >
+            {{ message }}
+        </v-snackbar>
     </v-container>
 </template>
 <script>
@@ -314,6 +331,8 @@ export default {
     },
     data() {
         return {
+            snackbar: false,
+            message: '',
             isLoading: false,
             id_ternak: '',
             jenis_kelamin: [
@@ -432,11 +451,17 @@ export default {
                     }
                 })
                 .then(() => {
-                    this.$router.push({ path: '/modal/pengajuan'})
+                    this.snackbar = true
+                    this.message = 'Berhasil Update Data'
+                    this.color = 'green'
+                    setTimeout( () => this.$router.push({ path: '/modal/pengajuan'}), 1000);
                     this.isLoading = false
                 })
                 .catch((err) => {
                     this.errors = err.response.data
+                    this.snackbar = true
+                    this.message = 'Gagal Update Data'
+                    this.color = 'red'
                     this.isLoading = false
                 });
             } else {
@@ -448,11 +473,17 @@ export default {
                     }
                 })
                 .then(() => {
-                    this.$router.push({ path: '/modal/pengajuan'})
+                    this.snackbar = true
+                    this.message = 'Berhasil Tambah Data'
+                    this.color = 'green'
+                    setTimeout( () => this.$router.push({ path: '/modal/pengajuan'}), 1000);
                     this.isLoading = false
                 })
                 .catch((err) => {
                     this.errors = err.response.data
+                    this.snackbar = true
+                    this.message = 'Gagal Tambah Data'
+                    this.color = 'red'
                     this.isLoading = false
                 });
             }

@@ -143,6 +143,13 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
+        <v-snackbar
+            v-model="snackbar"
+            timeout="2000"
+            :color="color"
+            >
+            {{ message }}
+        </v-snackbar>
     </v-container>
 </template>
 <script>
@@ -155,6 +162,8 @@ import { FETCH_TERNAK } from "@/store/actions.type";
 export default{
     data() {
         return {
+            snackbar: false,
+            message: '',
             page: 1,
             pageCount: 0,
             itemsPerPage: 5,
@@ -238,8 +247,11 @@ export default{
             .put("/ternak/"+ this.id_ternak, this.form)
             .then((res) => {
                 console.log(res)
+                this.snackbar = true
+                this.message = 'Berhasil Update Data'
+                this.color = 'green'
                 this.dialogStatus = false
-                this.$router.go()
+                setTimeout( () => this.$router.go(), 1000);
             })
             .catch((err) => console.log(err));
         },
