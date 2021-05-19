@@ -125,8 +125,19 @@
                             color="#139CA4"
                             block
                             form="register"
+                            :disabled="isLoading"
                             >
-                            Daftar
+                            <span v-if="isLoading">
+                                Loading 
+                                <v-progress-circular
+                                :size="15"
+                                indeterminate
+                                color="secondary"
+                                ></v-progress-circular>
+                            </span>
+                            <span v-else>
+                                Daftar
+                            </span>
                             </v-btn>
                         </v-card-actions>
                     </v-card>
@@ -141,7 +152,7 @@
     </v-app>
 </template>
 <script>
-import { mapState } from "vuex";
+// import { mapState } from "vuex";
 import ApiService from "@/common/api.service";
 import axios from "axios";
 
@@ -149,6 +160,7 @@ export default {
     name: "Register",
     data() {
         return {
+            isLoading: false,
             show_password: false,
             show_password_confirmation: false,
             name: "",
@@ -167,24 +179,27 @@ export default {
                 }
             ],
             menu: false,
+            errors: {},
         }
     },
     computed: {
-        ...mapState({
-            errors: state => state.auth.errors
-        })
+        // ...mapState({
+        //     errors: state => state.auth.errors
+        // })
     },
     methods: {
         onFilePicked(files){
             this.form.file = files[0];
         },
         onSubmit() {
+            this.isLoading = true
             this.form.name = this.form.nama_lengkap
             this.form.role_id = '2'
             this.form.user_st = 'Tidak Aktif'
                 ApiService.setHeader();
                 ApiService.post("users", this.form)
                 .then((res) => {
+                    this.isLoading = false
                     this.form.id_user = res.data.user.id
                     let formData = new FormData();
                     formData.append("nama_lengkap", this.form.nama_lengkap);
@@ -205,6 +220,10 @@ export default {
                         this.$router.push({ path: '/login'})
                     })
                 })
+                .catch((err) => {
+                    this.errors = err.response.data
+                    this.isLoading = false
+                });
         }
     }
 };

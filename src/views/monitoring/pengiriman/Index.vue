@@ -13,7 +13,7 @@
                         <div
                         class="title font-weight-bold my-2 ml-2"
                         >
-                        Data Transaksi
+                        Data Pengiriman
                         </div>  
                     </v-toolbar-title>
                     <v-spacer></v-spacer>
@@ -44,42 +44,7 @@
                             class="elevation-1"
                             @page-count="pageCount = $event"
                         >
-                        <template v-slot:[`item.masa_perawatan`]="{ item }">
-                            {{ item.masa_perawatan }} Bulan
-                        </template>
-                        <template v-slot:[`item.ternak_harga`]="{ item }">
-                            {{ formatPrice(item.ternak_harga) }}
-                        </template>
-                        <template v-slot:[`item.total_harga`]="{ item }">
-                            {{ formatPrice(item.total_harga) }}
-                        </template>
-                        <template v-slot:[`item.transaksi_tanggal`]="{ item }">
-                            {{ item.transaksi_tanggal|moment('MMM Do YYYY') }}
-                        </template>
-                        <template v-slot:[`item.transaksi_st`]="{ item }">
-                            <v-chip v-if="item.transaksi_st == 'settlement'" 
-                            color="success"
-                            text-color="white"
-                            small
-                            >
-                                Settlement
-                            </v-chip>
-                            <v-chip v-else-if="item.transaksi_st == 'expire'" 
-                            color="red"
-                            text-color="white"
-                            small
-                            >
-                                Expire
-                            </v-chip>
-                            <v-chip v-else-if="item.transaksi_st == 'cart'" 
-                            color="orange"
-                            text-color="white"
-                            small
-                            >
-                                Cart
-                            </v-chip>
-                        </template>
-                        <!-- <template v-slot:[`item.actions`]="{ item }">
+                        <template v-slot:[`item.actions`]="{ item }">
                             <v-btn 
                             small 
                             icon
@@ -88,10 +53,10 @@
                             @click="showForm(item.id)"
                             >
                                 <v-icon>
-                                mdi-eye
+                                mdi-pencil
                                 </v-icon>
                             </v-btn>
-                        </template> -->
+                        </template>
                         </v-data-table>
                     </v-col>
                 </v-row>
@@ -127,20 +92,20 @@ export default {
                     disabled: true,
                 },
                 {
-                    text: 'Transaksi',
+                    text: 'Pengiriman',
                     disabled: true,
                 },
             ],
             headers: [
                 { text: "ID", align: "start", sortable: false, value: "id" },
-                { text: "Hewan Ternak", align: "start", sortable: false, value: "ternak_nama" },
                 { text: "Customer", align: "start", sortable: false, value: "name" },
+                { text: "Pengiriman", align: "center", sortable: false, value: "pengiriman" },
+                { text: "Harga Ongkir", align: "center", sortable: false, value: "harga_ongkir" },
                 { text: "Harga Ternak", align: "center", sortable: false, value: "ternak_harga" },
-                { text: "Masa Perawatan", align: "center", sortable: false, value: "masa_perawatan" },
                 { text: "Total", align: "center", sortable: false, value: "total_harga" },
                 { text: "Status", align: "center", sortable: false, value: "transaksi_st" },
                 { text: "Tanggal", align: "center", sortable: false, value: "transaksi_tanggal" },
-                // { text: "Actions", align: "center", sortable: false, value: "actions" },
+                { text: "Actions", align: "center", sortable: false, value: "actions" },
             ],
         }
     },
@@ -155,10 +120,7 @@ export default {
         ...mapGetters(["transaksi"]),
     },
     methods: {
-        formatPrice(value) {
-            let val = (value/1).toFixed(2).replace('.', ',')
-            return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-        },
+      
     }
 }
 </script>

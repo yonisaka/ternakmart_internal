@@ -111,6 +111,10 @@ const router = new Router({
           path: 'payment',
           component: () => import("@/views/monitoring/payment/Index")
         },
+        {
+          path: 'pengiriman',
+          component: () => import("@/views/monitoring/pengiriman/Index")
+        },
       ],
       meta: {
         requiresAuth: true

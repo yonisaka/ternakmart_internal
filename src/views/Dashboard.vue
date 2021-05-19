@@ -126,14 +126,14 @@
 
                     <v-divider></v-divider>
 
-                    <v-card-actions class="justify-center">
+                    <!-- <v-card-actions class="justify-center">
                     <v-btn
                         block
                         text
                     >
                         Download Laporan
                     </v-btn>
-                    </v-card-actions>
+                    </v-card-actions> -->
                 </v-card>
             </v-col>
             <v-col cols="12" sm="12" lg="4">

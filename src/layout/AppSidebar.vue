@@ -72,7 +72,7 @@ export default {
     data () {
       return {
         drawer: true,
-        mini: true,
+        mini: false,
       }
     },
     computed: {

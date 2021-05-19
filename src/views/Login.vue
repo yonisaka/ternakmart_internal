@@ -43,8 +43,19 @@
                      color="#139CA4"
                      block
                      form="login"
+                     :disabled="isLoading"
                      >
-                        Masuk
+                        <span v-if="isLoading">
+                           Loading 
+                           <v-progress-circular
+                           :size="15"
+                           indeterminate
+                           color="secondary"
+                           ></v-progress-circular>
+                        </span>
+                        <span v-else>
+                           Masuk
+                        </span>
                      </v-btn>
                   </v-card-actions>
                </v-card>
@@ -63,25 +74,37 @@ import { mapState } from "vuex";
 import { LOGIN } from "@/store/actions.type";
 
 export default {
-    name: "Login",
-    data() {
-        return {
-        email: null,
-        password: null
-        };
-    },
-    methods: {
-        onSubmit(email, password) {
-        this.$store
+   name: "Login",
+   data() {
+      return {
+         isLoading: false,
+         email: null,
+         password: null,
+         // errors: {},
+      };
+   },
+   mounted() {
+      
+   },
+   methods: {
+      onSubmit(email, password) {
+      this.isLoading = true
+      this.$store
             .dispatch(LOGIN, { email, password })
-            .then(() => this.$router.push({ name: "dashboard" }));
-        }
-    },
-    computed: {
-        ...mapState({
-        errors: state => state.auth.errors
-        })
-    }
+            .then(() => {
+               // console.log(res)
+               this.isLoading = false
+               this.$router.push({ name: "dashboard" })
+            })
+            this.isLoading = false
+      }
+   },
+   computed: {
+      ...mapState({
+      errors: state => state.auth.errors
+      }),
+
+   }
 };
 </script>
 <style>

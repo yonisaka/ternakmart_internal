@@ -17,13 +17,13 @@
                         </div>  
                     </v-toolbar-title>
                     <v-spacer></v-spacer>
-                    <v-btn
+                    <!-- <v-btn
                     :to="'dokter/form'"
                     dense
                     color="primary"
                     >
                     Tambah Data
-                    </v-btn>
+                    </v-btn> -->
                 </v-toolbar>
                 <v-row>
                     <v-col sm="12" md="4">
