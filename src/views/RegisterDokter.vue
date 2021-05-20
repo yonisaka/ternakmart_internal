@@ -72,10 +72,8 @@
                                         <v-menu
                                             v-model="menu"
                                             :close-on-content-click="false"
-                                            :nudge-right="40"
-                                            transition="scale-transition"
-                                            offset-y
                                             min-width="auto"
+                                            transition="scale-transition"
                                         >
                                             <template v-slot:activator="{ on, attrs }">
                                             <v-text-field
@@ -88,6 +86,9 @@
                                             ></v-text-field>
                                             </template>
                                             <v-date-picker
+                                            year-icon="mdi-calendar-blank"
+                                            prev-icon="mdi-skip-previous"
+                                            next-icon="mdi-skip-next"
                                             v-model="form.tanggal_lahir"
                                             @input="menu = false"
                                             ></v-date-picker>

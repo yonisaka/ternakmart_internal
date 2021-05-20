@@ -59,7 +59,6 @@
                                         <v-menu
                                             v-model="menu"
                                             :close-on-content-click="false"
-                                            :nudge-right="40"
                                             transition="scale-transition"
                                             offset-y
                                             min-width="auto"
@@ -76,6 +75,9 @@
                                             </template>
                                             <v-date-picker
                                             v-model="form.tanggal_lahir"
+                                            year-icon="mdi-calendar-blank"
+                                            prev-icon="mdi-skip-previous"
+                                            next-icon="mdi-skip-next"
                                             @input="menu = false"
                                             ></v-date-picker>
                                         </v-menu>
