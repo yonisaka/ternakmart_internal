@@ -453,7 +453,7 @@ export default {
                 .then(() => {
                     this.snackbar = true
                     this.message = 'Berhasil Update Data'
-                    this.color = 'green'
+                    this.color = '#139CA4'
                     setTimeout( () => this.$router.push({ path: '/modal/pengajuan'}), 1000);
                     this.isLoading = false
                 })
@@ -475,7 +475,7 @@ export default {
                 .then(() => {
                     this.snackbar = true
                     this.message = 'Berhasil Tambah Data'
-                    this.color = 'green'
+                    this.color = '#139CA4'
                     setTimeout( () => this.$router.push({ path: '/modal/pengajuan'}), 1000);
                     this.isLoading = false
                 })

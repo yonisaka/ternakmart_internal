@@ -62,6 +62,24 @@
                             @click="showImage(item.file_path)"
                             ></v-img>
                         </template>
+                        <template v-slot:[`item.status`]="{ item }">
+                            <v-chip 
+                            v-if="item.user_st === 'Aktif'"
+                            color="success"
+                            text-color="white"
+                            small
+                            >
+                                Aktif
+                            </v-chip>
+                            <v-chip 
+                            v-else
+                            color="red"
+                            text-color="white"
+                            small
+                            >
+                                Tidak Aktif
+                            </v-chip>                            
+                        </template>
                         <template v-slot:[`item.actions`]="{ item }">
                             <v-btn 
                             small 
@@ -167,6 +185,7 @@ export default{
                 { text: "Tanggal Lahir", align: "start", sortable: false, value: "tanggal_lahir" },
                 { text: "Nomor HP", align: "center", sortable: false, value: "nomor_hp" },
                 { text: "Alamat", align: "center", sortable: false, value: "alamat" },
+                { text: "Status", align: "center", sortable: false, value: "status" },
                 { text: "Actions", align: "center", sortable: false, value: "actions" },
             ],
             dialogText: '',

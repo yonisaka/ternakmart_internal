@@ -177,6 +177,13 @@
                 </v-form>
             </v-card-text>
         </v-card>
+        <v-snackbar
+            v-model="snackbar"
+            timeout="2000"
+            :color="color"
+            >
+            {{ message }}
+        </v-snackbar>
     </v-container>
 </template>                
 
@@ -194,6 +201,9 @@ export default {
     },
     data() {
         return {
+            snackbar: false,
+            message: '',
+            color: '',
             id_customer:'',
             show_password: false,
             show_password_confirmation: false,
@@ -247,7 +257,10 @@ export default {
                 .then(() => {
                     ApiService.put("customer/" + this.id_customer, this.form)
                     .then(() => {
-                        this.$router.push({ path: '/user/customer'})
+                        this.snackbar = true
+                        this.message = 'Berhasil Update Data'
+                        this.color = '#139CA4'
+                        setTimeout( () => this.$router.push({ path: '/user/customer'}), 1000);
                     })
                 })
             } else {
@@ -258,7 +271,10 @@ export default {
                     this.form.id_user = res.data.user.id
                     ApiService.post("customer", this.form)
                     .then(() => {
-                        this.$router.push({ path: '/user/customer'})
+                        this.snackbar = true
+                        this.message = 'Berhasil Update Data'
+                        this.color = '#139CA4'
+                        setTimeout( () => this.$router.push({ path: '/user/customer'}), 1000);
                     })
                 })
             }

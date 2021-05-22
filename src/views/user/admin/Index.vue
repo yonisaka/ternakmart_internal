@@ -51,6 +51,24 @@
                             class="elevation-1"
                             @page-count="pageCount = $event"
                         >
+                        <template v-slot:[`item.user_st`]="{ item }">
+                            <v-chip 
+                            v-if="item.user_st === 'Aktif'"
+                            color="success"
+                            text-color="white"
+                            small
+                            >
+                                Aktif
+                            </v-chip>
+                            <v-chip 
+                            v-else
+                            color="red"
+                            text-color="white"
+                            small
+                            >
+                                Tidak Aktif
+                            </v-chip>                            
+                        </template>
                         <template v-slot:[`item.actions`]="{ item }">
                             <v-btn 
                             small 

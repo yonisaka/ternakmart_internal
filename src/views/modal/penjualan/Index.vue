@@ -249,7 +249,7 @@ export default{
                 console.log(res)
                 this.snackbar = true
                 this.message = 'Berhasil Update Data'
-                this.color = 'green'
+                this.color = '#139CA4'
                 this.dialogStatus = false
                 setTimeout( () => this.$router.go(), 1000);
             })

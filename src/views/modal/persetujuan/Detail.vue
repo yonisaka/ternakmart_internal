@@ -74,8 +74,11 @@
                                         <v-col cols="5">
                                             <div class="font-weight-bold" color="black"> Deskripsi</div>
                                         </v-col>
-                                        <v-col cols="7">
-                                            <div class="font-weight-bold" color="black">: {{ ternak.ternak_deskripsi }}</div>
+                                        <v-col cols="1">
+                                            <div class="font-weight-bold" color="black">: </div>
+                                        </v-col>
+                                        <v-col cols="12">
+                                            <div class="font-weight-bold" color="black">{{ ternak.ternak_deskripsi }}</div>
                                         </v-col>
                                     </v-row>
                                     <v-row>
@@ -800,7 +803,7 @@ export default {
                 .then(() => {
                     this.snackbar = true
                     this.message = 'Berhasil Update Data'
-                    this.color = 'green'
+                    this.color = '#139CA4'
                     setTimeout( () => this.$router.go(), 1000);
                 })
                 .catch((err) => {

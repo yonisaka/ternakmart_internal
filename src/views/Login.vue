@@ -90,6 +90,7 @@ export default {
          isLoading: false,
          email: null,
          password: null,
+         color: '',
          // errors: {},
       };
    },
@@ -106,7 +107,7 @@ export default {
                this.isLoading = false
                this.snackbar = true
                this.message = 'Berhasil Login'
-               this.color = 'green'
+               this.color = '#139CA4'
                setTimeout( () => this.$router.push({ name: "dashboard" }), 1000);
             })
             this.isLoading = false

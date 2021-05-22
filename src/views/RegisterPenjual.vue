@@ -200,7 +200,7 @@ export default {
                     .then(() => {
                         this.snackbar = true
                         this.message = 'Berhasil Pendaftaran'
-                        this.color = 'green'
+                        this.color = '#139CA4'
                         setTimeout( () => this.$router.push({ path: '/login'}), 2000);
                     })
                 })
