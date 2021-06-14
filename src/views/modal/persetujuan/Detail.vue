@@ -194,11 +194,10 @@
                                                 item-text="nama_lengkap"
                                                 item-value="id"
                                                 :items="dokter"
-                                                color="teal"
                                                 label="Dokter"
                                                 outlined
                                                 dense
-                                                required
+                                                :disabled="form.id_admin == 1"
                                                 ></v-select>
                                         </v-col>
                                         <v-col lg="4" cols="12" sm="12">
@@ -207,11 +206,10 @@
                                                 item-text="name"
                                                 item-value="id"
                                                 :items="admin"
-                                                color="teal"
                                                 label="Admin"
                                                 outlined
                                                 dense
-                                                required
+                                                :disabled="form.id_dokter == 1"
                                                 ></v-select>
                                         </v-col>
                                     </v-row>
@@ -655,6 +653,7 @@ export default {
     },
     data() {
         return { 
+            color:'',
             snackbar: false,
             message: '',
             tab: null,
@@ -838,6 +837,9 @@ export default {
             let val = (value/1).toFixed(2).replace('.', ',')
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
         },
+        // pemeriksa() {
+        //     console.log('asd')
+        // },
         onSubmit(){
             console.log(this.form)
             this.form.id_ternak = this.id_ternak
