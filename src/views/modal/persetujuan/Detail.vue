@@ -197,7 +197,7 @@
                                                 label="Dokter"
                                                 outlined
                                                 dense
-                                                :disabled="form.id_admin == 1"
+                                                :disabled="form.id_admin != null"
                                                 ></v-select>
                                         </v-col>
                                         <v-col lg="4" cols="12" sm="12">
@@ -209,7 +209,7 @@
                                                 label="Admin"
                                                 outlined
                                                 dense
-                                                :disabled="form.id_dokter == 1"
+                                                :disabled="form.id_dokter != null"
                                                 ></v-select>
                                         </v-col>
                                     </v-row>
