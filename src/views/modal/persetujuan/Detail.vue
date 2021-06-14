@@ -185,6 +185,41 @@
                                     @submit.prevent="onSubmit()"
                                     >
                                     <v-row>
+                                        <v-col lg="12" cols="12" sm="12">
+                                            <h3>Data Pemeriksa</h3>
+                                        </v-col>
+                                        <v-col lg="4" cols="12" sm="12">
+                                            <v-select
+                                                v-model="form.id_dokter"
+                                                item-text="nama_lengkap"
+                                                item-value="id"
+                                                :items="dokter"
+                                                color="teal"
+                                                label="Dokter"
+                                                outlined
+                                                dense
+                                                required
+                                                ></v-select>
+                                        </v-col>
+                                        <v-col lg="4" cols="12" sm="12">
+                                            <v-select
+                                                v-model="form.id_admin"
+                                                item-text="name"
+                                                item-value="id"
+                                                :items="admin"
+                                                color="teal"
+                                                label="Admin"
+                                                outlined
+                                                dense
+                                                required
+                                                ></v-select>
+                                        </v-col>
+                                    </v-row>
+                                    <hr/><br>
+                                    <v-row>
+                                        <v-col lg="12" cols="12" sm="12">
+                                            <h3>Data Pemeriksaan</h3>
+                                        </v-col>
                                         <v-col lg="4" cols="12" sm="12">
                                             <v-text-field
                                                 label="Anamnesa"
@@ -696,7 +731,9 @@ export default {
             ],
             pemeriksaan: {},
             dialogDetail: false,
-            detail: {}
+            detail: {},
+            dokter: [],
+            admin: [],
         }
     },
     watch: {
@@ -744,6 +781,19 @@ export default {
         .then((res) => {
             this.pemeriksaan = res.data.pemeriksaan
         })
+        axios
+        .get("/dokter/")
+        .then((res) => {
+            this.dokter = res.data.dokter
+        })
+        axios
+        .get("/users/")
+        .then((res) => {
+            this.admin = res.data.users.filter(users => {
+                return users.role_id == '1'
+            })
+            // console.log(this.admin);
+        })
     },
     computed: {
         ...mapGetters(["currentUser"]),
@@ -789,11 +839,12 @@ export default {
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
         },
         onSubmit(){
+            console.log(this.form)
             this.form.id_ternak = this.id_ternak
            
             this.form.terapi = JSON.stringify(this.terapi)
             this.form.pemeriksaan_lab = JSON.stringify(this.form.pemeriksaan_lab)
-            this.form.id_dokter = this.currentUser.id
+            // this.form.id_dokter = this.currentUser.id
             this.ternak.verifikasi_st = 1
 
             // console.log(this.form)
