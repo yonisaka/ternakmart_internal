@@ -61,6 +61,31 @@
                         <template v-slot:[`item.tgl_penerimaan`]="{ item }">
                             {{ item.tgl_penerimaan|moment('MMM Do YYYY') }}
                         </template>
+                        <template v-slot:[`item.diskon_st`]="{ item }">
+                            <div v-if="item.diskon_st === '1'">
+                                <v-chip
+                                    class="ma-2"
+                                    color="green"
+                                    text-color="white"
+                                    @click="diskonItem(item.id)"
+                                >
+                                Rp. {{ formatPrice(item.diskon_harga) }}
+                                </v-chip>
+                            </div>
+                            <div v-else>
+                                <v-chip
+                                    class="ma-2"
+                                    color="grey"
+                                    text-color="white"
+                                    @click="diskonItem(item.id)"
+                                >
+                                <v-icon>
+                                mdi-plus
+                                </v-icon>
+                                Diskon
+                                </v-chip>
+                            </div>
+                        </template>
                         <template v-slot:[`item.ternak_st`]="{ item }">
                             <v-chip
                             v-if="item.ternak_st === '1'"
@@ -143,6 +168,29 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
+        <v-dialog v-model="dialogDiskon" max-width="400px">
+            <v-card>
+                <v-card-title class="headline">
+                    <span class="mx-auto"> {{ dialogText }} </span>
+                </v-card-title>
+                <v-card-text>
+                    <v-text-field
+                        v-model="form.diskon_harga"
+                        color="teal darken-2"
+                        label="Masukkan Diskon"
+                        outlined
+                        dense
+                        required
+                        ></v-text-field>
+                </v-card-text>
+                <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" text @click="closeDiskon">Cancel</v-btn>
+                <v-btn color="blue darken-1" text @click="diskonItemConfirm">OK</v-btn>
+                <v-spacer></v-spacer>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
         <v-snackbar
             v-model="snackbar"
             timeout="2000"
@@ -173,6 +221,7 @@ export default{
             foto:'',
             dialogText: '',
             dialogStatus: false,
+            dialogDiskon: false,
             dialogImage: false,
             breadcrumbs: [
                 {
@@ -194,6 +243,7 @@ export default{
                 { text: "Umur (bln)", value: "ternak_umur", sortable: false },
                 { text: "Harga", value: "ternak_harga", sortable: false},
                 { text: "Tanggal Penerimaan", value: "tgl_penerimaan", sortable: false},
+                { text: "Diskon", align: "center", value: "diskon_st", sortable: false},
                 { text: "Status Jual", align: "center", value: "ternak_st", sortable: false},
                 { text: "Actions", value: "actions", sortable: false },
             ],
@@ -239,10 +289,37 @@ export default{
             })
             
         },
+        diskonItem (id) {
+            this.id_ternak = id
+            axios
+            .get("/ternak/"+ this.id_ternak)
+            .then((res) => {
+                this.form = res.data.ternak
+                this.form.diskon_st = '1'
+                this.dialogText = 'Diskon Ternak'
+                this.dialogDiskon = true
+            })
+        },
+        closeDiskon () {
+            this.dialogDiskon = false
+        },
         closeStatus () {
             this.dialogStatus = false
         },
         statusItemConfirm () {
+            axios
+            .put("/ternak/"+ this.id_ternak, this.form)
+            .then((res) => {
+                console.log(res)
+                this.snackbar = true
+                this.message = 'Berhasil Update Data'
+                this.color = '#139CA4'
+                this.dialogStatus = false
+                setTimeout( () => this.$router.go(), 1000);
+            })
+            .catch((err) => console.log(err));
+        },
+        diskonItemConfirm () {
             axios
             .put("/ternak/"+ this.id_ternak, this.form)
             .then((res) => {
