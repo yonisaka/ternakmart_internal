@@ -57,21 +57,28 @@
                             {{ item.transaksi_tanggal|moment('MMM Do YYYY') }}
                         </template>
                         <template v-slot:[`item.transaksi_st`]="{ item }">
-                            <v-chip v-if="item.transaksi_st == 'settlement'" 
+                            <v-chip v-if="item.transaksi_st == 'PAID'" 
                             color="success"
                             text-color="white"
                             small
                             >
-                                Settlement
+                                PAID
                             </v-chip>
-                            <v-chip v-else-if="item.transaksi_st == 'expire'" 
+                            <v-chip v-else-if="item.transaksi_st == 'PENDING'" 
+                            color="orange"
+                            text-color="white"
+                            small
+                            >
+                                PENDING
+                            </v-chip>
+                            <v-chip v-else-if="item.transaksi_st == 'EXPIRED'" 
                             color="red"
                             text-color="white"
                             small
                             >
-                                Expire
+                                EXPIRED
                             </v-chip>
-                            <v-chip v-else-if="item.transaksi_st == 'cart'" 
+                            <v-chip v-else-if="item.transaksi_st == 'CART'" 
                             color="orange"
                             text-color="white"
                             small
@@ -133,6 +140,7 @@ export default {
             ],
             headers: [
                 { text: "ID", align: "start", sortable: false, value: "id" },
+                { text: "Invoice", align: "start", sortable: true, value: "invoice" },
                 { text: "Hewan Ternak", align: "start", sortable: false, value: "ternak_nama" },
                 { text: "Customer", align: "start", sortable: false, value: "name" },
                 { text: "Harga Ternak", align: "center", sortable: false, value: "ternak_harga" },
