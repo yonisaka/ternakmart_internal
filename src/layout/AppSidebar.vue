@@ -6,11 +6,13 @@
     permanent
     >
         <v-list-item class="px-2 py-1">
-            <v-list-item-avatar>
-            <v-img src="img/brand/ternakmart.png"></v-img>
-            </v-list-item-avatar>
+            <a href="#">
+                <v-list-item-avatar>
+                    <v-img src="img/brand/ternakmart.png"></v-img>
+                </v-list-item-avatar>
+            </a>
 
-            <v-list-item-title class="pl-5 subtitle font-weight-bold">Ternak Mart</v-list-item-title>
+            <v-list-item-title class="pl-5 subtitle font-weight-bold">Calty Farm</v-list-item-title>
 
             <v-btn
             icon

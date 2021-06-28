@@ -98,7 +98,7 @@
             <v-col cols="12" sm="12" lg="8">
                 <v-card
                     class="mx-auto text-center"
-                    color="#2980b9"
+                    color="#fff"
                     dark
                 >
                     <v-card-text>
@@ -119,7 +119,7 @@
                     </v-card-text>
 
                     <v-card-text>
-                    <div class="display-1 font-weight-medium">
+                    <div class="display-1 font-weight-medium grey--text">
                         Total Transaksi 7 Hari terakhir
                     </div>
                     </v-card-text>
