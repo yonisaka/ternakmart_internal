@@ -1,10 +1,10 @@
 <template>
-  <v-footer padless>
+  <v-footer absolute="fixed">
     <v-col
       class="text-center"
       cols="12"
     >
-      {{ new Date().getFullYear() }} — <strong>Ternak Mart</strong>
+      {{ new Date().getFullYear() }} — <strong>Calty Mart</strong>
     </v-col>
   </v-footer>
 </template>

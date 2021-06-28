@@ -2,7 +2,7 @@
   <div id="app">
     <v-app>
         <router-view name="header"></router-view>
-        <router-view name="sidebar"></router-view>
+        <!-- <router-view name="sidebar"></router-view> -->
         <v-main>
             <v-container fluid>
                 <v-row class="fill-height">

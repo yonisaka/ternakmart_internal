@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from "../store"
 
-import AppSidebar from "@/layout/AppSidebar";
 import AppHeader from "@/layout/AppHeader";
 import AppFooter from "@/layout/AppFooter"; 
 
@@ -41,7 +40,6 @@ const router = new Router({
       path: '/',
       name: 'dashboard',
       components: {
-        sidebar: AppSidebar,
         header: AppHeader,
         default: () => import("@/views/Dashboard"),
         footer: AppFooter,
@@ -54,7 +52,6 @@ const router = new Router({
       path: '/modal',
       name: 'modal',
       components: {
-        sidebar: AppSidebar,
         header: AppHeader,
         default: () => import("@/views/Index"),
         footer: AppFooter,
@@ -97,7 +94,6 @@ const router = new Router({
       path: '/monitoring',
       name: 'monitoring',
       components: {
-        sidebar: AppSidebar,
         header: AppHeader,
         default: () => import("@/views/Index"),
         footer: AppFooter,
@@ -124,7 +120,6 @@ const router = new Router({
       path: '/user',
       name: 'user',
       components: {
-        sidebar: AppSidebar,
         header: AppHeader,
         default: () => import("@/views/Index"),
         footer: AppFooter,
@@ -187,7 +182,6 @@ const router = new Router({
       path: '/setting',
       name: 'setting',
       components: {
-        sidebar: AppSidebar,
         header: AppHeader,
         default: () => import("@/views/Index"),
         footer: AppFooter,
@@ -214,7 +208,6 @@ const router = new Router({
       path: '/data',
       name: 'data',
       components: {
-        sidebar: AppSidebar,
         header: AppHeader,
         default: () => import("@/views/Index"),
         footer: AppFooter,
