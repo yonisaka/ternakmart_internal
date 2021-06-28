@@ -75,7 +75,7 @@
                             :to="'persetujuan/detail/'+item.id"
                             >
                                 <v-icon>
-                                mdi-magnify
+                                mdi-eye
                                 </v-icon>
                             </v-btn>
                         </template>
@@ -106,7 +106,7 @@ export default{
         return {
             page: 1,
             pageCount: 0,
-            itemsPerPage: 5,
+            itemsPerPage: 15,
             id_ternak: '',
             search: '',
             breadcrumbs: [

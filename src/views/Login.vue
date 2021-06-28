@@ -27,10 +27,11 @@
                         >
                         </v-text-field>
                         <v-text-field
-                           append-icon="mdi-form-textbox-password"
                            v-model="password"
+                           :append-icon="show_password ? 'mdi-eye' : 'mdi-eye-off'"
+                           :type="show_password ? 'text' : 'password'"
                            label="Password"
-                           type="password"
+                           @click:append="show_password = !show_password"
                         ></v-text-field>
                      </v-form>
                   </v-card-text>
@@ -91,16 +92,20 @@ export default {
          email: null,
          password: null,
          color: '',
+         show_password: false,
          // errors: {},
       };
    },
    mounted() {
-      
+      // console.log(this.errors)
+      // if(this.errors){
+      //    this.isLoading = false
+      // }
    },
    methods: {
       onSubmit(email, password) {
-      this.isLoading = true
-      this.$store
+         this.isLoading = true
+         this.$store
             .dispatch(LOGIN, { email, password })
             .then(() => {
                // console.log(res)
@@ -110,14 +115,20 @@ export default {
                this.color = '#139CA4'
                setTimeout( () => this.$router.push({ name: "dashboard" }), 1000);
             })
-            this.isLoading = false
+            .catch(() => this.isLoading = false)
+            // this.isLoading = false
+            if(this.errors){
+               this.isLoading = false
+            }
       }
    },
    computed: {
       ...mapState({
       errors: state => state.auth.errors
-      }),
-
+      })
+      // if(this.errors){
+      //    this.isLoading = false
+      // }
    }
 };
 </script>

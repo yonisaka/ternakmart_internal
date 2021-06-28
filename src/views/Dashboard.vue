@@ -12,7 +12,7 @@
                 >
                     <v-list-item two-line>
                     <v-list-item-content>
-                        <v-list-item-title class="font-weight-bold headline mb-4 mt-1" style="color: #139CA4">
+                        <v-list-item-title class="font-weight-bold headline mb-4 mt-1" style="color: #7f8c8d">
                         {{ total_ternak }}
                         </v-list-item-title>
                         <div class="overline font-weight-bold">
@@ -22,7 +22,7 @@
 
                     <v-icon
                     size="60"
-                    color="#139CA4"
+                    color="#3498db"
                     >mdi-cow</v-icon>
                     </v-list-item>
                 </v-card>
@@ -34,7 +34,7 @@
                 >
                     <v-list-item two-line>
                     <v-list-item-content>
-                        <v-list-item-title class="font-weight-bold headline mb-4 mt-1" style="color: #139CA4">
+                        <v-list-item-title class="font-weight-bold headline mb-4 mt-1" style="color: #7f8c8d">
                         {{ total_transaksi }}
                         </v-list-item-title>
                         <div class="overline font-weight-bold">
@@ -44,7 +44,7 @@
 
                     <v-icon
                     size="50"
-                    color="#139CA4"
+                    color="#9b59b6"
                     >mdi-cart-arrow-down</v-icon>
                     </v-list-item>
                 </v-card>
@@ -56,7 +56,7 @@
                 >
                     <v-list-item two-line>
                     <v-list-item-content>
-                        <v-list-item-title class="font-weight-bold headline mb-4 mt-1" style="color: #139CA4">
+                        <v-list-item-title class="font-weight-bold headline mb-4 mt-1" style="color: #7f8c8d">
                         {{ total_ternak_verifikasi }}
                         </v-list-item-title>
                         <div class="overline font-weight-bold">
@@ -66,7 +66,7 @@
 
                     <v-icon
                     size="50"
-                    color="#139CA4"
+                    color="#e74c3c"
                     >mdi-check-decagram</v-icon>
                     </v-list-item>
                 </v-card>
@@ -78,7 +78,7 @@
                 >
                     <v-list-item two-line>
                     <v-list-item-content>
-                        <v-list-item-title class="font-weight-bold headline mb-4 mt-1" style="color: #139CA4">
+                        <v-list-item-title class="font-weight-bold headline mb-4 mt-1" style="color: #7f8c8d">
                         {{ formatPrice(total_ternak_harga_transaksi) }}
                         </v-list-item-title>
                         <div class="overline font-weight-bold">
@@ -88,7 +88,7 @@
 
                     <v-icon
                     size="50"
-                    color="#139CA4"
+                    color="#f1c40f"
                     >mdi-finance</v-icon>
                     </v-list-item>
                 </v-card>
@@ -98,7 +98,7 @@
             <v-col cols="12" sm="12" lg="8">
                 <v-card
                     class="mx-auto text-center"
-                    color="#139CA4"
+                    color="#2980b9"
                     dark
                 >
                     <v-card-text>
@@ -119,7 +119,7 @@
                     </v-card-text>
 
                     <v-card-text>
-                    <div class="display-1 font-weight-thin">
+                    <div class="display-1 font-weight-medium">
                         Total Transaksi 7 Hari terakhir
                     </div>
                     </v-card-text>

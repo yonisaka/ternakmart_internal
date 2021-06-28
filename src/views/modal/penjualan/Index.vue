@@ -214,7 +214,7 @@ export default{
             message: '',
             page: 1,
             pageCount: 0,
-            itemsPerPage: 5,
+            itemsPerPage: 15,
             id_ternak: '',
             form: {},
             search: '',
@@ -320,6 +320,10 @@ export default{
             .catch((err) => console.log(err));
         },
         diskonItemConfirm () {
+            if(this.form.diskon_harga == null || this.form.diskon_harga == '0'){
+                this.form.diskon_st = '0';
+            }
+            // console.log(this.form)
             axios
             .put("/ternak/"+ this.id_ternak, this.form)
             .then((res) => {

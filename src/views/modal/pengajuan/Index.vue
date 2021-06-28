@@ -154,7 +154,7 @@ export default{
         return {
             page: 1,
             pageCount: 0,
-            itemsPerPage: 5,
+            itemsPerPage: 15,
             id_ternak: '',
             dialogText: '',
             foto:'',
