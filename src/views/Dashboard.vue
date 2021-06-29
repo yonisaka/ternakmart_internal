@@ -8,7 +8,7 @@
             <v-col lg="3" sm="6" col="6">
                 <v-card
                     class="mx-auto"
-                    outlined
+                    flat
                 >
                     <v-list-item two-line>
                     <v-list-item-content>
@@ -16,13 +16,14 @@
                         {{ total_ternak }}
                         </v-list-item-title>
                         <div class="overline font-weight-bold">
-                        Hewan Ternak
+                        Jumlah Hewan Ternak
                         </div>
                     </v-list-item-content>
 
                     <v-icon
                     size="60"
                     color="#3498db"
+                    class="ma-5"
                     >mdi-cow</v-icon>
                     </v-list-item>
                 </v-card>
@@ -30,7 +31,7 @@
             <v-col lg="3" sm="6" col="6">
                 <v-card
                     class="mx-auto"
-                    outlined
+                    flat
                 >
                     <v-list-item two-line>
                     <v-list-item-content>
@@ -45,6 +46,7 @@
                     <v-icon
                     size="50"
                     color="#9b59b6"
+                    class="ma-5"
                     >mdi-cart-arrow-down</v-icon>
                     </v-list-item>
                 </v-card>
@@ -52,7 +54,7 @@
             <v-col lg="3" sm="6" col="6">
                 <v-card
                     class="mx-auto"
-                    outlined
+                    flat
                 >
                     <v-list-item two-line>
                     <v-list-item-content>
@@ -67,6 +69,7 @@
                     <v-icon
                     size="50"
                     color="#e74c3c"
+                    class="ma-5"
                     >mdi-check-decagram</v-icon>
                     </v-list-item>
                 </v-card>
@@ -74,7 +77,7 @@
             <v-col lg="3" sm="6" col="6">
                 <v-card
                     class="mx-auto"
-                    outlined
+                    flat
                 >
                     <v-list-item two-line>
                     <v-list-item-content>
@@ -89,6 +92,7 @@
                     <v-icon
                     size="50"
                     color="#f1c40f"
+                    class="ma-5"
                     >mdi-finance</v-icon>
                     </v-list-item>
                 </v-card>
@@ -100,6 +104,7 @@
                     class="mx-auto text-center"
                     color="#fff"
                     dark
+                    flat
                 >
                     <v-card-text>
                     <v-sheet color="rgba(0, 0, 0, .12)">
@@ -137,7 +142,7 @@
                 </v-card>
             </v-col>
             <v-col cols="12" sm="12" lg="4">
-                <v-card>
+                <v-card flat>
                     <v-card-title>
                         Aktivitas
                     </v-card-title>
@@ -181,6 +186,7 @@
                             </v-list-item-content>
 
                             <v-chip
+                            class="white--text"
                             color="red"
                             >
                                 {{ total_menu }}

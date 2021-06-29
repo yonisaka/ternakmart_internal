@@ -1,5 +1,5 @@
 <template>
-  <v-footer absolute="fixed">
+  <v-footer fixed>
     <v-col
       class="text-center"
       cols="12"

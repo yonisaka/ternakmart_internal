@@ -3,8 +3,8 @@
     <v-app>
         <router-view name="header"></router-view>
         <!-- <router-view name="sidebar"></router-view> -->
-        <v-main>
-            <v-container fluid>
+        <v-main class="grey lighten-4">
+            <v-container fluid class="mb-15" >
                 <v-row class="fill-height">
                     <v-col>
                         <transition name="fade">

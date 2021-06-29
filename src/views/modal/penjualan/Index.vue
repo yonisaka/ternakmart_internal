@@ -134,26 +134,13 @@
             </v-card-text>
         </v-card>
         <v-dialog v-model="dialogImage" max-width="700px">
-            <v-card>
-                <v-card-title class="headline">
-                    <!-- <span class="mx-auto"> {{ dialogText }} </span> -->
-                </v-card-title>
-                <v-card-text>
-                    <v-img
-                    max-height="700px"
-                    max-width="700px"
-                    :src="foto"
-                    aspect-ratio="1.8"
-                    @error="$event.target.src='img/default.png'"
-                    ></v-img>
-                </v-card-text>
-                <!-- <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
-                <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
-                <v-spacer></v-spacer>
-                </v-card-actions> -->
-            </v-card>
+            <v-img
+            max-height="700px"
+            max-width="700px"
+            :src="foto"
+            aspect-ratio="1.8"
+            @error="$event.target.src='img/default.png'"
+            ></v-img>
         </v-dialog>
         <v-dialog v-model="dialogStatus" max-width="400px">
             <v-card>
