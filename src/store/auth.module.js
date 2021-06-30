@@ -57,13 +57,13 @@ const actions = {
         });
     });
   },
-  [CHECK_AUTH](context,next) {
+  [CHECK_AUTH](context) {
     if (JwtService.getToken()) {
       ApiService.setHeader();
-      ApiService.get("users")
-        .then(() => {
-          next()
-          // context.commit(SET_AUTH, data.user);
+      const id = JwtService.getId();
+      ApiService.get("users", id)
+        .then(({ data }) => {
+          context.commit(SET_AUTH, data);
         })
         .catch(({ response }) => {
           context.commit(SET_ERROR, response);
@@ -72,6 +72,21 @@ const actions = {
       context.commit(PURGE_AUTH);
     }
   },
+  // [CHECK_AUTH](context,next) {
+  //   if (JwtService.getToken()) {
+  //     ApiService.setHeader();
+  //     ApiService.get("users")
+  //       .then(() => {
+  //         next()
+  //         // context.commit(SET_AUTH, data.user);
+  //       })
+  //       .catch(({ response }) => {
+  //         context.commit(SET_ERROR, response);
+  //       });
+  //   } else {
+  //     context.commit(PURGE_AUTH);
+  //   }
+  // },
   [UPDATE_USER](context, payload) {
     const { email, username, password, image, bio } = payload;
     const user = {
