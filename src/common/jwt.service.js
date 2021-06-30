@@ -18,6 +18,6 @@ export const saveId = uid => {
 
 export const getId = () => {
   return window.localStorage.getItem("uid");
-}
+};
 
-export default { getToken, saveToken, destroyToken };
+export default { getToken, saveToken, destroyToken, saveId, getId };
