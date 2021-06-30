@@ -12,4 +12,12 @@ export const destroyToken = () => {
   window.localStorage.removeItem(ID_TOKEN_KEY);
 };
 
+export const saveId = uid => {
+  window.localStorage.setItem("uid", uid);
+};
+
+export const getId = () => {
+  return window.localStorage.getItem("uid");
+}
+
 export default { getToken, saveToken, destroyToken };
