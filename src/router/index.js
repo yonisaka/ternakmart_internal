@@ -85,6 +85,18 @@ const router = new Router({
           path: 'penjualan/detail/:id',
           component: () => import("@/views/modal/penjualan/Detail")
         },
+        {
+          path: 'produk',
+          component: () => import("@/views/modal/produk/Index")
+        },
+        {
+          path: 'produk/form',
+          component: () => import("@/views/modal/produk/Form")
+        },
+        {
+          path: 'produk/form/:id',
+          component: () => import("@/views/modal/produk/Form")
+        },
       ],
       meta: {
         requiresAuth: true
