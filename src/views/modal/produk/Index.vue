@@ -13,7 +13,7 @@
                         <div
                         class="title font-weight-bold my-2 ml-2"
                         >
-                        Produk Qurban
+                        Produk
                         </div>  
                     </v-toolbar-title>
                     <v-spacer></v-spacer>
@@ -62,6 +62,12 @@
                             @error="$event.target.src='img/default.png'"
                             @click="showImage(item.file_path)"
                             ></v-img>
+                        </template>
+                        <template v-slot:[`item.kategori`]="{ item }">
+                            {{ toUpperCase(item.kategori) }}
+                        </template>
+                        <template v-slot:[`item.produk_jenis`]="{ item }">
+                            {{ toUpperCase(item.produk_jenis) }}
                         </template>
                         <template v-slot:[`item.produk_harga`]="{ item }">
                             {{ formatPrice(item.produk_harga) }}
@@ -158,6 +164,7 @@ export default{
                 { text: "ID", align: "start", sortable: false, value: "id" },
                 { text: "Nama Produk", align: "start", sortable: false, value: "produk_nama" },
                 { text: "Foto", align: "center", sortable: false, value: "foto" },
+                { text: "Kategori Produk", value: "kategori", sortable: false },
                 { text: "Jenis Produk", value: "produk_jenis", sortable: false },
                 { text: "Qty", value: "qty", sortable: false },
                 { text: "Harga", value: "produk_harga", sortable: false },
@@ -175,6 +182,11 @@ export default{
         })
     },
     methods: {
+        toUpperCase(value){
+            if(!value) return ''
+                value = value.toString()
+            return value.toUpperCase()
+        },
         formatPrice(value) {
             let val = (value/1).toFixed(2).replace('.', ',')
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")

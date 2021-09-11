@@ -174,7 +174,7 @@
                                 <v-img
                                 :lazy-src="form.file_path"
                                 :src="form.file_path"
-                                aspect-ratio="1.8"
+                                aspect-ratio="2.2"
                                 @error="$event.target.src='img/default.png'"
                                 ></v-img>
                             </v-col>
@@ -183,7 +183,9 @@
                                 lg="6"
                                 sm="12"
                             >
-                                <v-textarea
+                                <label>Deskripsi</label>
+                                <vue-editor v-model="form.ternak_deskripsi" :editor-toolbar="customToolbar"/>
+                                <!-- <v-textarea
                                 v-model="form.ternak_deskripsi"
                                 color="teal darken-2"
                                 rows="10"
@@ -196,10 +198,12 @@
                                     Deskripsi
                                     </div>
                                 </template>
-                                </v-textarea>
+                                </v-textarea> -->
                             </v-col>
                             <v-col v-else cols="12">
-                                <v-textarea
+                                <label>Deskripsi</label>
+                                <vue-editor v-model="form.ternak_deskripsi" :editor-toolbar="customToolbar"/>
+                                <!-- <v-textarea
                                 v-model="form.ternak_deskripsi"
                                 color="teal darken-2"
                                 rows="10"
@@ -212,7 +216,7 @@
                                     Deskripsi
                                     </div>
                                 </template>
-                                </v-textarea>
+                                </v-textarea> -->
                             </v-col>
                             <v-col
                                 cols="12"
@@ -324,9 +328,11 @@ import { mapGetters } from "vuex";
 // import { FETCH_JENIS, ADD_TERNAK } from "@/store/actions.type";
 import { FETCH_GOL } from "@/store/actions.type";
 import axios from "axios";
+import { VueEditor } from "vue2-editor";
 
 export default {
     components: {
+        VueEditor
         // DatePicker
     },
     data() {
@@ -375,6 +381,11 @@ export default {
                     'city_id' : ''
                 }
             ],
+            color: '',
+            customToolbar: [
+                ["bold", "italic", "underline"],
+                [{ list: "ordered" }, { list: "bullet" }],
+            ],
         }
     },
     mounted() {
@@ -390,10 +401,19 @@ export default {
             .get("/ternak/"+ this.$route.params.id)
             .then((res) => {
                 this.form = res.data.ternak
+                this.golongan = {
+                    'id': res.data.ternak.id_golongan,
+                    'golongan_nama': res.data.ternak.golongan_nama
+                }
                 this.jenis = {
                     'id': res.data.ternak.id_jenis,
                     'jenis_nama': res.data.ternak.jenis_nama
                 }
+                axios
+                .get("lokasi/kota/"+ this.form.province_id)
+                .then((res) => {
+                    this.kota = res.data.kota;
+                })
                 this.kota = {
                     'city_id': res.data.ternak.city_id,
                     'city_name': res.data.ternak.city_name

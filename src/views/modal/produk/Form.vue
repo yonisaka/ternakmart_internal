@@ -104,6 +104,23 @@
                                 @change="filterCity"
                                 ></v-select>
                             </v-col>
+                            <v-col 
+                                cols="12"
+                                lg="6"
+                                sm="12"
+                            >
+                                <v-select
+                                v-model="form.kategori"
+                                item-text="text"
+                                item-value="value"
+                                :items="kategori"
+                                color="teal"
+                                label="Kategori Produk"
+                                outlined
+                                dense
+                                required
+                                ></v-select>
+                            </v-col>
                             <v-col
                                 cols="12"
                                 lg="6"
@@ -152,7 +169,9 @@
                                 ></v-text-field>
                             </v-col>
                             <v-col cols="12">
-                                <v-textarea
+                                <label class="ml-1">Deskripsi</label>
+                                <vue-editor v-model="form.produk_deskripsi" :editor-toolbar="customToolbar"/>
+                                <!-- <v-textarea
                                 v-model="form.produk_deskripsi"
                                 color="teal darken-2"
                                 rows="10"
@@ -165,7 +184,7 @@
                                     Deskripsi Produk
                                     </div>
                                 </template>
-                                </v-textarea>
+                                </v-textarea> -->
                             </v-col>
                         </v-row>
                         <v-row class="text-right">
@@ -197,8 +216,10 @@
 </template>
 <script>
 import axios from "axios";
+import { VueEditor } from "vue2-editor";
 
 export default {
+    components: { VueEditor },
     data() {
         return {
             breadcrumbs: [
@@ -227,6 +248,16 @@ export default {
                     'city_id' : ''
                 }
             ],
+            kategori: [
+                {
+                    'text' : 'Produk',
+                    'value' : 'produk'
+                },
+                {
+                    'text' : 'Aqiqah',
+                    'value' : 'aqiqah'
+                },
+            ],
             errors: {},
             jenis: [
                 {
@@ -237,7 +268,16 @@ export default {
                     'text' : 'Kaleng',
                     'value' : 'kaleng'
                 }
-            ]
+                ,
+                {
+                    'text' : 'Aqiqah',
+                    'value' : 'aqiqah'
+                }
+            ],
+            customToolbar: [
+                ["bold", "italic", "underline"],
+                [{ list: "ordered" }, { list: "bullet" }],
+            ],
         }
     },
     mounted() {
@@ -247,6 +287,7 @@ export default {
         })
         this.id_produk = this.$route.params.id || ''
         if (this.$route.params.id){
+            
             axios
             .get("/produk/"+ this.$route.params.id)
             .then((res) => {
@@ -255,6 +296,11 @@ export default {
                     'value': res.data.data.produk_jenis,
                     'text': res.data.data.produk_jenis
                 }
+                axios
+                .get("lokasi/kota/"+ res.data.data.province_id)
+                .then((res) => {
+                    this.kota = res.data.kota;
+                })
                 this.kota = {
                     'city_id': res.data.data.city_id,
                     'city_name': res.data.data.city_name
@@ -279,6 +325,7 @@ export default {
             let formData = new FormData();
             formData.append("produk_nama", this.form.produk_nama);
             formData.append("produk_jenis", this.form.produk_jenis);
+            formData.append("kategori", this.form.kategori);
             formData.append("qty", this.form.qty);
             formData.append("produk_harga", this.form.produk_harga);
             formData.append("produk_deskripsi", this.form.produk_deskripsi);
